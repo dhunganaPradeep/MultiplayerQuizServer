@@ -102,5 +102,3 @@ The server and client communicate using a simple, human-readable, text-based pro
 - The client is fully CLI-based for simplicity and portability.
 
 ---
-
-If you have any questions or want to extend the protocol, see `src/common/protocol.h` and `src/common 

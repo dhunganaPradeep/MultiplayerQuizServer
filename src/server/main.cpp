@@ -15,7 +15,7 @@
 
 #include "debug_log.h"
 
-// POSIX socket headers
+// Remove Windows-specific headers and add POSIX socket headers
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -156,7 +156,7 @@ std::string processCommand(const ProtocolMessage& parsed, ClientSession& session
                 std::string fullMsg = buildMessage("GAME_RESPONSE", {qmsg});
                 debugLogMsg("To player '" + player + "': '" + fullMsg + "'");
                 sendToClient(player, fullMsg, clients);
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Small delay
             }
         } else {
             response = buildMessage("ERROR", {"Invalid start game parameters"});
@@ -188,7 +188,7 @@ std::string processCommand(const ProtocolMessage& parsed, ClientSession& session
             int answerIndex = std::stoi(parsed.params[2]);
             std::string result = gameEngine.submitAnswer(session.currentRoomId, session.username, answerIndex);
             response = buildMessage("GAME_RESPONSE", {result});
-            // Send next question to this player
+            // Send next question or game-finished to this player
             std::string qmsg = gameEngine.getCurrentQuestion(session.currentRoomId, session.username);
             sendToClient(session.username, buildMessage("GAME_RESPONSE", {qmsg}), clients);
         } else {

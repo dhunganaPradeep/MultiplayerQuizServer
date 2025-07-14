@@ -110,86 +110,72 @@ void sendWithNewline(int sock, const std::string& msg) {
 }
 
 // Helper: handle a game session (wait for questions, display, prompt for answer, submit, repeat)
-void playGameSession(int sock, const std::string& username, const std::string& currentRoomId, const std::string* initialQuestionRaw = nullptr) {
-    char buffer[1024];
-    int recvLen;
-    bool first = true;
+void playGameSession(int sock, const std::string& username, const std::string& currentRoomId, const std::string* initialQuestionRaw) {
     std::string leftover;
-    while (true) {
-        if (first && initialQuestionRaw) {
-            debugLogMsg("Using initialQuestionRaw");
-            leftover += *initialQuestionRaw;
-            // Ensure a newline at the end for correct splitting
-            if (leftover.empty() || leftover.back() != '\n') leftover += '\n';
-            debugLogMsg("Initial leftover buffer: '" + leftover + "'");
-            first = false;
-        } else {
-            // Robust socket reading: read all available data
-            do {
-                recvLen = recv(sock, buffer, sizeof(buffer) - 1, MSG_DONTWAIT);
-                if (recvLen == -1 && (errno == EWOULDBLOCK || errno == EAGAIN)) {
-                    break; // No more data for now
-                }
-                if (recvLen <= 0) {
-                    if (recvLen == 0) debugLogMsg("Server closed connection.");
-                    return;
-                }
-                debugLogMsg("Received " + std::to_string(recvLen) + " bytes from server.");
-                std::string rawBytes = "Raw bytes received: ";
-                for (int i = 0; i < recvLen; ++i) {
-                    char hex[4];
-                    sprintf(hex, "%02X ", (unsigned char)buffer[i]);
-                    rawBytes += hex;
-                }
-                debugLogMsg(rawBytes);
-                debugLogMsg("Raw buffer as string: '" + std::string(buffer, recvLen) + "'");
-                buffer[recvLen] = '\0';
-                leftover += buffer;
-                debugLogMsg("Buffer after append: '" + leftover + "'");
-            } while (true);
-        }
-        // Always process all complete messages in leftover before next recv
-        size_t pos;
-        while ((pos = leftover.find('\n')) != std::string::npos) {
+    if (initialQuestionRaw && !initialQuestionRaw->empty()) {
+        leftover = *initialQuestionRaw;
+    }
+    bool gameFinished = false;
+    while (!gameFinished) {
+        // Collect all complete messages in leftover before next recv
+        std::vector<std::string> messages;
+        while (true) {
+            size_t pos = leftover.find('\n');
+            if (pos == std::string::npos) break;
             std::string message = leftover.substr(0, pos);
             leftover = leftover.substr(pos + 1);
-            if (message.empty()) continue; // skip empty lines
-            debugLogMsg("Processing message: '" + message + "'");
+            if (!message.empty()) messages.push_back(message);
+        }
+        // If no complete message, recv more data
+        if (messages.empty()) {
+            char buffer[4096];
+            int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+            if (recvLen <= 0) break;
+            buffer[recvLen] = '\0';
+            leftover += buffer;
+            continue;
+        }
+        // First, process all ANSWER_RESULT messages
+        for (const auto& message : messages) {
             ProtocolMessage parsed = parseMessage(message);
-            debugLogMsg("Parsed command: '" + parsed.command + "' with " + std::to_string(parsed.params.size()) + " params.");
-            bool gameFinished = false;
-            for (const auto& param : parsed.params) {
-                if (param.find("GAME_FINISHED") != std::string::npos) {
+            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "GAME_STARTED") {
+                // Print GAME_STARTED info, but do not let it affect game flow
+                std::cout << "\n" << parsed.params[0];
+                for (size_t i = 1; i < parsed.params.size(); ++i) {
+                    std::cout << " | " << parsed.params[i];
+                }
+                std::cout << "\n";
+                continue;
+            }
+            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "ANSWER_RESULT") {
+                bool correct = (parsed.params.size() > 1 && parsed.params[1] == "CORRECT");
+                std::string correctText = (parsed.params.size() > 3) ? parsed.params[3] : "?";
+                std::string scoreStr = (parsed.params.size() > 4) ? parsed.params[4] : "?";
+                if (correct) {
+                    std::cout << "\nCorrect! The answer was: " << correctText << ". Your score: " << scoreStr << "\n";
+                } else {
+                    std::cout << "\nIncorrect. The correct answer was: " << correctText << ". Your score: " << scoreStr << "\n";
+                }
+                if (parsed.params.size() > 5 && parsed.params[5] == "GAME_FINISHED") {
+                    std::cout << "\nGame over!\n";
                     gameFinished = true;
                     break;
                 }
             }
-            if (parsed.command == "QUESTION" && !parsed.params.empty()) {
-                ProtocolMessage qmsg = parseMessage(parsed.params[0]);
-                if (qmsg.command == "ERROR") {
-                    printError(qmsg.params.empty() ? "Game error" : qmsg.params[0]);
-                    return;
-                }
-                if (qmsg.params.size() < 4) {
-                    std::cout << "\n[Warning] Malformed question message from server.\n";
-                    std::cout << "Raw: " << parsed.params[0] << "\n";
-                    return;
-                }
-                std::cout << "\n[" << qmsg.params[0] << "] (Time left: " << qmsg.params[2] << "s)\n";
-                std::cout << qmsg.params[1] << "\n";
-                for (size_t i = 3; i < qmsg.params.size(); ++i) {
-                    std::cout << qmsg.params[i] << "\n";
-                }
-                std::string ans = getInput("Enter your answer (option number): ");
-                std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
-                sendWithNewline(sock, submitMsg);
-            } else if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "QUESTION") {
+        }
+        if (gameFinished) break;
+        // Then, process the first QUESTION message (if any)
+        for (const auto& message : messages) {
+            ProtocolMessage parsed = parseMessage(message);
+            // Handle QUESTION as separate params in GAME_RESPONSE
+            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "QUESTION") {
                 if (parsed.params.size() < 5) {
                     std::cout << "\n[Warning] Malformed question message from server.\n";
                     std::cout << "Raw: ";
                     for (const auto& p : parsed.params) std::cout << "[" << p << "] ";
                     std::cout << "\n";
-                    return;
+                    gameFinished = true;
+                    break;
                 }
                 std::cout << "\n[" << parsed.params[1] << "] (Time left: " << parsed.params[3] << "s)\n";
                 std::cout << parsed.params[2] << "\n";
@@ -199,71 +185,30 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                 std::string ans = getInput("Enter your answer (option number): ");
                 std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
                 sendWithNewline(sock, submitMsg);
-            } else if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0].rfind("QUESTION|", 0) == 0) {
-                ProtocolMessage qmsg = parseMessage(parsed.params[0]);
-                if (qmsg.command == "QUESTION") {
-                    if (qmsg.params.size() < 4) {
-                        std::cout << "\n[Warning] Malformed question message from server.\n";
-                        std::cout << "Raw: " << parsed.params[0] << "\n";
-                        return;
-                    }
-                    std::cout << "\n[" << qmsg.params[0] << "] (Time left: " << qmsg.params[2] << "s)\n";
-                    std::cout << qmsg.params[1] << "\n";
-                    for (size_t i = 3; i < qmsg.params.size(); ++i) {
-                        std::cout << qmsg.params[i] << "\n";
-                    }
-                    std::string ans = getInput("Enter your answer (option number): ");
-                    std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
-                    sendWithNewline(sock, submitMsg);
-                } else if (qmsg.command == "ERROR") {
-                    printError(qmsg.params.empty() ? "Game error" : qmsg.params[0]);
-                    return;
-                }
-            } else if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty()) {
-                // Handle ANSWER_RESULT
-                if (parsed.params[0] == "ANSWER_RESULT") {
-                    // Format: ANSWER_RESULT|CORRECT|<correct_answer>|<score>[|GAME_FINISHED]
-                    bool correct = (parsed.params.size() > 1 && parsed.params[1] == "CORRECT");
-                    std::string correctStr = (parsed.params.size() > 2) ? parsed.params[2] : "?";
-                    std::string scoreStr = (parsed.params.size() > 3) ? parsed.params[3] : "?";
-                    if (correct) {
-                        std::cout << "\nCorrect! The answer was: " << correctStr << ". Your score: " << scoreStr << "\n";
-                    } else {
-                        std::cout << "\nIncorrect. The correct answer was: " << correctStr << ". Your score: " << scoreStr << "\n";
-                    }
-                    if (gameFinished) {
-                        std::cout << "\nGame over!\n";
-                        return;
-                    }
-                    continue;
-                }
-                // Handle ERROR|No more questions|GAME_FINISHED
-                if (parsed.params[0] == "ERROR" && gameFinished) {
-                    std::cout << "\nGame over! No more questions.\n";
-                    return;
-                }
-                // Default: print first param
-                std::cout << "\n" << parsed.params[0] << "\n";
-                if (gameFinished) {
-                    std::cout << "Game finished!\n";
-                    return;
-                }
-            } else if (parsed.command == "LEADERBOARD") {
-                std::cout << "\n" << parsed.params[0] << "\n";
-                return;
-            } else if (parsed.command == "ERROR") {
-                printError(parsed.params.empty() ? "Game error" : parsed.params[0]);
-                if (gameFinished) {
-                    std::cout << "Game finished!\n";
-                    return;
-                }
-                return;
-            } else {
-                debugLogMsg("Unhandled command: '" + parsed.command + "'");
+                // After submitting, break to wait for ANSWER_RESULT
+                break;
             }
-            if (gameFinished) {
-                std::cout << "Game finished!\n";
-                return;
+            // Handle other GAME_RESPONSE types
+            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] != "ANSWER_RESULT" && parsed.params[0] != "QUESTION") {
+                std::cout << "\n" << parsed.params[0] << "\n";
+                if (parsed.params.size() > 1 && parsed.params[1] == "GAME_FINISHED") {
+                    std::cout << "Game finished!\n";
+                    gameFinished = true;
+                    break;
+                }
+            }
+            if (parsed.command == "LEADERBOARD") {
+                std::cout << "\n" << parsed.params[0] << "\n";
+                gameFinished = true;
+                break;
+            }
+            if (parsed.command == "ERROR") {
+                printError(parsed.params.empty() ? "Game error" : parsed.params[0]);
+                if (parsed.params.size() > 1 && parsed.params[1] == "GAME_FINISHED") {
+                    std::cout << "Game finished!\n";
+                }
+                gameFinished = true;
+                break;
             }
         }
     }
@@ -361,20 +306,20 @@ int main() {
                         passwordBytes += hex;
                     }
                     debugLogMsg(passwordBytes);
-                    std::string registerMsg = buildMessage("REGISTER", {username, password});
+                std::string registerMsg = buildMessage("REGISTER", {username, password});
                     sendWithNewline(sock, registerMsg);
-                    recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                    if (recvLen > 0) {
-                        buffer[recvLen] = '\0';
-                        ProtocolMessage parsed = parseMessage(buffer);
-                        printResponse(parsed);
-                        if (parsed.command == "OK") {
-                            printSuccess("Registration successful! Please login.");
+                recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                if (recvLen > 0) {
+                    buffer[recvLen] = '\0';
+                    ProtocolMessage parsed = parseMessage(buffer);
+                    printResponse(parsed);
+                    if (parsed.command == "OK") {
+                        printSuccess("Registration successful! Please login.");
                             break;
                         } else if (parsed.command == "ERROR" && !parsed.params.empty()) {
                             printError(parsed.params[0]);
-                        } else {
-                            printError("Registration failed.");
+                    } else {
+                        printError("Registration failed.");
                         }
                     }
                     waitForEnter();
@@ -398,21 +343,21 @@ int main() {
                         continue;
                     }
                     debugLogMsg("Logging in with username: '" + username + "' password: '" + password + "'");
-                    std::string loginMsg = buildMessage("LOGIN", {username, password});
+                std::string loginMsg = buildMessage("LOGIN", {username, password});
                     sendWithNewline(sock, loginMsg);
-                    recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                    if (recvLen > 0) {
-                        buffer[recvLen] = '\0';
-                        ProtocolMessage parsed = parseMessage(buffer);
-                        printResponse(parsed);
-                        if (parsed.command == "OK") {
-                            loggedIn = true;
-                            printSuccess("Login successful!");
+                recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                if (recvLen > 0) {
+                    buffer[recvLen] = '\0';
+                    ProtocolMessage parsed = parseMessage(buffer);
+                    printResponse(parsed);
+                    if (parsed.command == "OK") {
+                        loggedIn = true;
+                        printSuccess("Login successful!");
                             break;
                         } else if (parsed.command == "ERROR" && !parsed.params.empty()) {
                             printError(parsed.params[0]);
-                        } else {
-                            printError("Login failed.");
+                    } else {
+                        printError("Login failed.");
                         }
                     }
                     waitForEnter();
@@ -558,7 +503,8 @@ int main() {
                     std::cout << "============\n\n";
                     std::cout << "Room: " << currentRoomId << "\n\n";
                     
-                    std::vector<std::string> gameOptions = {"Start Game", "Get Current Question", "Submit Answer", "Get Game Info", "Get Leaderboard", "End Game", "Back to Main Menu"};
+                    // Only show relevant options
+                    std::vector<std::string> gameOptions = {"Start Game", "Get Game Info", "Get Leaderboard", "End Game", "Back to Main Menu"};
                     printMenu(gameOptions);
                     
                     int gameChoice = getChoice(gameOptions.size());
@@ -579,47 +525,7 @@ int main() {
                         playGameSession(sock, username, currentRoomId, leftover.empty() ? nullptr : &leftover);
                         waitForEnter();
                         
-                    } else if (gameChoice == 2) { // Get Current Question
-                        std::string getQMsg = buildMessage("GET_CURRENT_QUESTION", {username, currentRoomId});
-                        sendWithNewline(sock, getQMsg);
-                        
-                        recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                        if (recvLen > 0) {
-                            buffer[recvLen] = '\0';
-                            ProtocolMessage parsed = parseMessage(buffer);
-                            printResponse(parsed);
-                            
-                            // Immediately ask for answer if question was received
-                            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty()) {
-                                std::cout << "\n";
-                                std::string ans = getInput("Enter your answer (option number): ");
-                                std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
-                                sendWithNewline(sock, submitMsg);
-                                
-                                recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                                if (recvLen > 0) {
-                                    buffer[recvLen] = '\0';
-                                    ProtocolMessage answerParsed = parseMessage(buffer);
-                                    printResponse(answerParsed);
-                                }
-                            }
-                        }
-                        waitForEnter();
-                        
-                    } else if (gameChoice == 3) { // Submit Answer
-                        std::string ans = getInput("Enter your answer (option number): ");
-                        std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
-                        sendWithNewline(sock, submitMsg);
-                        
-                        recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                        if (recvLen > 0) {
-                            buffer[recvLen] = '\0';
-                            ProtocolMessage parsed = parseMessage(buffer);
-                            printResponse(parsed);
-                        }
-                        waitForEnter();
-                        
-                    } else if (gameChoice == 4) { // Get Game Info
+                    } else if (gameChoice == 2) { // Get Game Info
                         std::string infoMsg = buildMessage("GET_GAME_INFO", {username, currentRoomId});
                         sendWithNewline(sock, infoMsg);
                         
@@ -631,7 +537,7 @@ int main() {
                         }
                         waitForEnter();
                         
-                    } else if (gameChoice == 5) { // Get Leaderboard
+                    } else if (gameChoice == 3) { // Get Leaderboard
                         std::string lbMsg = buildMessage("GET_LEADERBOARD", {username, currentRoomId});
                         sendWithNewline(sock, lbMsg);
                         
@@ -643,7 +549,7 @@ int main() {
                         }
                         waitForEnter();
                         
-                    } else if (gameChoice == 6) { // End Game
+                    } else if (gameChoice == 4) { // End Game
                         std::string endMsg = buildMessage("END_GAME", {username, currentRoomId});
                         sendWithNewline(sock, endMsg);
                         
@@ -655,7 +561,7 @@ int main() {
                         }
                         waitForEnter();
                         
-                    } else if (gameChoice == 7) { // Back to Main Menu
+                    } else if (gameChoice == 5) { // Back to Main Menu
                         break;
                     }
                 }

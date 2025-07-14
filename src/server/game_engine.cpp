@@ -244,7 +244,8 @@ std::string GameEngine::submitAnswer(int roomId, const std::string& username, in
     bool finished = (playerIdx >= static_cast<int>(questions.size()));
     std::ostringstream oss;
     oss << "ANSWER_RESULT|" << (correct ? "CORRECT" : "INCORRECT") 
-        << "|" << (question.getCorrectAnswerIndex() + 1) << "|" << playerScore.score;
+        << "|" << (question.getCorrectAnswerIndex() + 1)
+        << "|" << question.getCorrectAnswer() << "|" << playerScore.score;
     if (finished) {
         oss << "|GAME_FINISHED";
     }

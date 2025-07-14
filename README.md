@@ -148,7 +148,7 @@ Each message is a single line of text, with fields separated by the `|` characte
 ### Message Parsing
 The code uses `std::getline()` with `|` delimiter to parse messages into a command and parameters vector.
 
----
 
-
----
+# Authors
+Vision Rijal - 201739
+Pradip Dhungana - 201751

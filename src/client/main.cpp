@@ -498,7 +498,7 @@ void playGameSession(int sock, const std::string& username, const std::string& c
     int score = 0;
     
     while (!gameFinished) {
-        
+        // Collect all complete messages in leftover before next recv
         std::vector<std::string> messages;
         while (true) {
             size_t pos = leftover.find('\n');
@@ -507,7 +507,6 @@ void playGameSession(int sock, const std::string& username, const std::string& c
             leftover = leftover.substr(pos + 1);
             if (!message.empty()) messages.push_back(message);
         }
-        
         if (messages.empty()) {
             char buffer[4096];
             int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
@@ -516,33 +515,14 @@ void playGameSession(int sock, const std::string& username, const std::string& c
             leftover += buffer;
             continue;
         }
-        
+        // First, process all ANSWER_RESULT messages
         for (const auto& message : messages) {
             ProtocolMessage parsed = parseMessage(message);
-            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "GAME_STARTED") {
-                
-                std::cout << "\n" << Color::BRIGHT_GREEN << "┌─────────────────────────────────────────────┐\n";
-                std::cout << "│         " << Color::BRIGHT_WHITE << "GAME HAS OFFICIALLY STARTED" << Color::BRIGHT_GREEN << "         │\n";
-                std::cout << "└─────────────────────────────────────────────┘\n" << Color::RESET;
-                
-                std::cout << Color::BRIGHT_CYAN << "Players joined: " << Color::RESET;
-                for (size_t i = 1; i < parsed.params.size(); ++i) {
-                    if (i > 1) std::cout << ", ";
-                    if (parsed.params[i] == username) {
-                        std::cout << Color::BRIGHT_GREEN << parsed.params[i] << Color::RESET;
-                    } else {
-                        std::cout << Color::BRIGHT_YELLOW << parsed.params[i] << Color::RESET;
-                    }
-                }
-                std::cout << "\n\n";
-                continue;
-            }
             if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "ANSWER_RESULT") {
                 bool correct = (parsed.params.size() > 1u && parsed.params[1] == "CORRECT");
                 std::string correctText = (parsed.params.size() > 3u) ? parsed.params[3] : "?";
                 std::string scoreStr = (parsed.params.size() > 4u) ? parsed.params[4] : "?";
                 score = std::stoi(scoreStr);
-                
                 std::cout << "\n";
                 if (correct) {
                     std::cout << Color::BRIGHT_GREEN << "┌─────────────────────────────────────────────┐\n";
@@ -555,8 +535,6 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                     padding = 41 - 18 - scoreStr.length();
                     std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_GREEN << "│\n";
                     std::cout << "└─────────────────────────────────────────────┘\n" << Color::RESET;
-                    
-                    
                     for (int i = 0; i < 3; i++) {
                         std::cout << Color::BRIGHT_GREEN << "+10 points!" << Color::RESET << std::string(20, ' ') << "\r" << std::flush;
                         std::this_thread::sleep_for(std::chrono::milliseconds(200));
@@ -575,17 +553,12 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                     std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_RED << "│\n";
                     std::cout << "└─────────────────────────────────────────────┘\n" << Color::RESET;
                 }
-                
                 if (parsed.params.size() > 5u && parsed.params[5] == "GAME_FINISHED") {
-                    
                     std::cout << "\n" << Color::BRIGHT_MAGENTA;
                     UI::typeText("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", 5, Color::BRIGHT_MAGENTA);
                     UI::typeText("             GAME OVER             ", 30, Color::BRIGHT_YELLOW + Color::BOLD);
                     UI::typeText("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", 5, Color::BRIGHT_MAGENTA);
-                    
                     std::cout << "\n" << Color::BRIGHT_CYAN << "Final Score: " << Color::BRIGHT_WHITE << score << Color::RESET << "\n";
-                    
-                    
                     if (score > 30) {
                         std::cout << Color::BRIGHT_YELLOW << "\n";
                         std::cout << "       ___________\n";
@@ -597,20 +570,18 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                         std::cout << "         '::. .'\n";
                         std::cout << "           ) (\n";
                         std::cout << "         _.' '._\n";
-                        std::cout << "        `\"\"\"\"\"\"\"`\n" << Color::RESET;
+                        std::cout << "        `\"\"\"\"\"\"`\n" << Color::RESET;
                         std::cout << Color::BRIGHT_GREEN << "    CONGRATULATIONS!\n" << Color::RESET;
                     }
-                    
                     gameFinished = true;
                     break;
                 }
             }
         }
         if (gameFinished) break;
-        
+        // Then process the next QUESTION (if any)
         for (const auto& message : messages) {
             ProtocolMessage parsed = parseMessage(message);
-            
             if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "QUESTION") {
                 if (parsed.params.size() < 5u) {
                     std::cout << "\n" << Color::BRIGHT_RED << "[Warning] Malformed question message from server.\n";
@@ -620,56 +591,42 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                     gameFinished = true;
                     break;
                 }
-                
                 questionCount++;
-                
-                
                 std::cout << "\n" << Color::BRIGHT_BLUE << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n";
                 std::cout << "┃ " << Color::BRIGHT_YELLOW << "QUESTION " << parsed.params[1] << Color::BRIGHT_CYAN << " | " 
                           << "Time: " << Color::BRIGHT_WHITE << parsed.params[3] << "s" 
                           << Color::BRIGHT_BLUE << std::string(44 - parsed.params[1].length() - parsed.params[3].length(), ' ') << "┃\n";
                 std::cout << "┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n";
-                
-                
                 std::string question = parsed.params[2];
                 int lineWidth = 58;
-                
                 for (size_t i = 0; i < question.length(); i += lineWidth) {
                     std::string line = question.substr(i, std::min(lineWidth, static_cast<int>(question.length() - i)));
                     std::cout << "┃ " << Color::BRIGHT_WHITE << line << Color::BRIGHT_BLUE;
                     int padding = lineWidth - line.length();
                     std::cout << std::string(padding, ' ') << "┃\n";
                 }
-                
                 std::cout << "┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n";
-                
-                
                 const std::vector<std::string> optionColors = {
                     Color::BRIGHT_GREEN, Color::BRIGHT_CYAN, 
                     Color::BRIGHT_YELLOW, Color::BRIGHT_MAGENTA
                 };
-                
                 for (size_t i = 4; i < parsed.params.size(); ++i) {
                     int optionNum = i - 4;
                     std::string optionColor = optionColors[optionNum % optionColors.size()];
-                    
-                    
                     std::string optionText = parsed.params[i];
                     if (optionText.length() > 2 && optionText[0] >= '1' && optionText[0] <= '9' && 
                         (optionText[1] == '.' || optionText[1] == ')')) {
                         optionText = optionText.substr(2);
-                        
                         while (!optionText.empty() && optionText[0] == ' ') {
                             optionText = optionText.substr(1);
                         }
                     }
-                    
                     std::cout << "┃ " << optionColor << (optionNum + 1) << ") " << optionText << Color::BRIGHT_BLUE;
                     int padding = lineWidth - optionText.length() - 3; 
                     std::cout << std::string(std::max(0, padding), ' ') << "┃\n";
                 }
-                
                 std::cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n" << Color::RESET;
+<<<<<<< Updated upstream
                 
                 
                 std::cout << "\n";
@@ -677,6 +634,8 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                 
                 std::cout << Color::BRIGHT_YELLOW << "Time remaining: " << parsed.params[3] << "s" << Color::RESET << "\n\n";
                 
+=======
+>>>>>>> Stashed changes
                 std::string ans;
                 std::thread timerThread([&]() {
                     int timeLeft = std::stoi(parsed.params[3]);
@@ -695,133 +654,40 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                         std::this_thread::sleep_for(std::chrono::seconds(1));
                     }
                 });
+<<<<<<< Updated upstream
                 
                 
+=======
+                std::cout << "\n\n";
+>>>>>>> Stashed changes
                 ans = getInput(Color::BRIGHT_WHITE + "Enter your answer (option number): " + Color::RESET);
                 timerThread.detach(); 
-                
-                
                 std::cout << std::string(50, ' ') << "\r" << std::flush;
-                
-                
                 UI::spinner("Submitting answer", 800);
-                
                 std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
                 sendWithNewline(sock, submitMsg);
-                
                 break;
             }
-            
-            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] != "ANSWER_RESULT" && parsed.params[0] != "QUESTION") {
-                std::cout << "\n" << Color::BRIGHT_CYAN << parsed.params[0] << Color::RESET << "\n";
-                if (parsed.params.size() > 1u && parsed.params[1] == "GAME_FINISHED") {
-                    
-                    UI::typeText("GAME FINISHED!", 50, Color::BRIGHT_YELLOW + Color::BOLD);
-                    gameFinished = true;
-                    break;
-                }
-            }
-            if (parsed.command == "LEADERBOARD") {
-                
-                std::cout << "\n" << Color::BRIGHT_MAGENTA << "╔════════════════════════════════════════════╗\n";
-                std::cout << "║            " << Color::BRIGHT_WHITE << "FINAL LEADERBOARD" << Color::BRIGHT_MAGENTA << "             ║\n";
-                std::cout << "╠════════════════════════════════════════════╣\n";
-                
-                std::vector<std::pair<std::string, int>> leaderboardEntries;
-                
-                
-                std::string leaderboardStr = parsed.params[0];
-                
-                
-                std::cout << Color::BRIGHT_RED << "Debug - Raw leaderboard: " << Color::RESET << leaderboardStr << std::endl;
-                
-                
-                if (leaderboardStr.empty() || leaderboardStr == "LEADERBOARD:") {
-                    
-                    leaderboardEntries.push_back({username, score});
-                    
-                    leaderboardEntries.push_back({"Player2", score - 10});
-                    leaderboardEntries.push_back({"Player3", score - 20});
-                } else {
-                    std::istringstream iss(leaderboardStr);
-                    std::string line;
-                    
-                    
-                    std::getline(iss, line);
-                    if (line.find("LEADERBOARD") != std::string::npos) {
-                        
+            // Also handle GAME_STARTED as info only
+            if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "GAME_STARTED") {
+                std::cout << "\n" << Color::BRIGHT_GREEN << "┌─────────────────────────────────────────────┐\n";
+                std::cout << "│         " << Color::BRIGHT_WHITE << "GAME HAS OFFICIALLY STARTED" << Color::BRIGHT_GREEN << "         │\n";
+                std::cout << "└─────────────────────────────────────────────┘\n" << Color::RESET;
+                std::cout << Color::BRIGHT_CYAN << "Players joined: " << Color::RESET;
+                for (size_t i = 1; i < parsed.params.size(); ++i) {
+                    if (i > 1) std::cout << ", ";
+                    if (parsed.params[i] == username) {
+                        std::cout << Color::BRIGHT_GREEN << parsed.params[i] << Color::RESET;
                     } else {
-                        
-                        size_t pos = line.find(':');
-                        if (pos != std::string::npos) {
-                            std::string name = line.substr(0, pos);
-                            std::string scoreText = line.substr(pos + 1);
-                            
-                            scoreText.erase(std::remove_if(scoreText.begin(), scoreText.end(), 
-                                                        [](unsigned char c) { return std::isspace(c); }),
-                                        scoreText.end());
-                            int score = std::stoi(scoreText);
-                            leaderboardEntries.push_back({name, score});
-                        }
-                    }
-                    
-                    
-                    while (std::getline(iss, line)) {
-                        size_t pos = line.find(':');
-                        if (pos != std::string::npos) {
-                            std::string name = line.substr(0, pos);
-                            std::string scoreText = line.substr(pos + 1);
-                            
-                            scoreText.erase(std::remove_if(scoreText.begin(), scoreText.end(), 
-                                                        [](unsigned char c) { return std::isspace(c); }),
-                                        scoreText.end());
-                            int score = std::stoi(scoreText);
-                            leaderboardEntries.push_back({name, score});
-                        }
+                        std::cout << Color::BRIGHT_YELLOW << parsed.params[i] << Color::RESET;
                     }
                 }
-                
-                
-                std::sort(leaderboardEntries.begin(), leaderboardEntries.end(), 
-                          [](const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) { return a.second > b.second; });
-                
-                
-                if (leaderboardEntries.empty()) {
-                    leaderboardEntries.push_back({username, score});
-                }
-                
-                
-                const std::vector<std::string> medals = {"🥇", "🥈", "🥉"};
-                
-                for (size_t i = 0; i < leaderboardEntries.size(); ++i) {
-                    std::string position = (i < 3) ? medals[i] + " " : std::to_string(i + 1) + ". ";
-                    std::string name = leaderboardEntries[i].first;
-                    std::string scoreStr = std::to_string(leaderboardEntries[i].second);
-                    
-                    
-                    std::string nameColor = (name == username) ? Color::BRIGHT_GREEN : Color::BRIGHT_WHITE;
-                    
-                    std::cout << "║ " << Color::BRIGHT_YELLOW << position << nameColor << name << Color::RESET;
-                    
-                    
-                    int padding = 40 - position.length() - name.length() - scoreStr.length();
-                    std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_CYAN << scoreStr << Color::BRIGHT_MAGENTA << " ║\n";
-                }
-                
-                std::cout << "╚════════════════════════════════════════════╝\n" << Color::RESET;
-                
-                gameFinished = true;
-                break;
-            }
-            if (parsed.command == "ERROR") {
-                printError(parsed.params.empty() ? "Game error" : parsed.params[0]);
-                if (parsed.params.size() > 1u && parsed.params[1] == "GAME_FINISHED") {
-                    UI::typeText("GAME FINISHED DUE TO ERROR", 30, Color::BRIGHT_RED);
-                }
-                gameFinished = true;
-                break;
+                std::cout << "\n\n";
+                continue;
             }
         }
+        if (gameFinished) break;
+        // ... existing code ...
     }
     waitForEnter();
 }
@@ -1485,83 +1351,60 @@ int main() {
                         }
                         waitForEnter();
                         
-                    } else if (gameChoice == 3) { 
-                        
+                    } else if (gameChoice == 3) { // View Leaderboard
                         std::cout << "\n";
-                        UI::spinner("Retrieving leaderboard", 1000);
-                        
-                        std::string lbMsg = buildMessage("GET_LEADERBOARD", {username, currentRoomId});
-                        sendWithNewline(sock, lbMsg);
-                        
-                        recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                        UI::spinner("Fetching leaderboard", 800);
+                        std::string leaderboardMsg = buildMessage("GET_LEADERBOARD", {username, currentRoomId});
+                        sendWithNewline(sock, leaderboardMsg);
+                        char buffer[4096];
+                        int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
                         if (recvLen > 0) {
                             buffer[recvLen] = '\0';
                             ProtocolMessage parsed = parseMessage(buffer);
-                            
-                            
-                            std::cout << "\n" << Color::BRIGHT_MAGENTA << "╔════════════════════════════════════════════╗\n";
-                            std::cout << "║            " << Color::BRIGHT_WHITE << "GAME LEADERBOARD" << Color::BRIGHT_MAGENTA << "              ║\n";
-                            std::cout << "╠════════════════════════════════════════════╣\n";
-                            
-                            if (parsed.params.empty()) {
-                                std::cout << "║ " << Color::BRIGHT_YELLOW << "No leaderboard data available yet." << Color::BRIGHT_MAGENTA << "    ║\n";
-                            } else {
-                                
+                            if (parsed.command == "LEADERBOARD") {
+                                // Display leaderboard as in playGameSession
+                                std::cout << "\n" << Color::BRIGHT_MAGENTA << "╔════════════════════════════════════════════╗\n";
+                                std::cout << "║            " << Color::BRIGHT_WHITE << "FINAL LEADERBOARD" << Color::BRIGHT_MAGENTA << "             ║\n";
+                                std::cout << "╠════════════════════════════════════════════╣\n";
+                                std::vector<std::pair<std::string, int>> leaderboardEntries;
                                 std::string leaderboardStr = parsed.params[0];
-                                std::istringstream iss(leaderboardStr);
-                                std::string line;
-                                
-                                
-                                std::getline(iss, line);
-                                if (line.find("LEADERBOARD") != std::string::npos) {
-                                    
+                                if (leaderboardStr.empty() || leaderboardStr == "LEADERBOARD:") {
+                                    leaderboardEntries.push_back({username, 0});
                                 } else {
-                                    
-                                    size_t pos = line.find(':');
-                                    if (pos != std::string::npos) {
-                                        std::string name = line.substr(0, pos);
-                                        std::string score = line.substr(pos + 1);
-                                        
-                                        
-                                        std::string nameColor = (name == username) ? Color::BRIGHT_GREEN : Color::BRIGHT_WHITE;
-                                        
-                                        std::cout << "║ " << nameColor << name << Color::RESET << ": " 
-                                                  << Color::BRIGHT_YELLOW << score << Color::RESET;
-                                        
-                                        
-                                        int padding = 40 - name.length() - score.length() - 2; 
-                                        std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_MAGENTA << "║\n";
+                                    std::istringstream iss(leaderboardStr);
+                                    std::string line;
+                                    while (std::getline(iss, line)) {
+                                        size_t pos = line.find(':');
+                                        if (pos != std::string::npos) {
+                                            std::string name = line.substr(0, pos);
+                                            std::string scoreText = line.substr(pos + 1);
+                                            scoreText.erase(std::remove_if(scoreText.begin(), scoreText.end(), [](unsigned char c) { return std::isspace(c); }), scoreText.end());
+                                            int score = std::stoi(scoreText);
+                                            leaderboardEntries.push_back({name, score});
+                                        }
                                     }
                                 }
-                                
-                                
-                                while (std::getline(iss, line)) {
-                                    size_t pos = line.find(':');
-                                    if (pos != std::string::npos) {
-                                        std::string name = line.substr(0, pos);
-                                        std::string score = line.substr(pos + 1);
-                                        
-                                        
-                                        std::string nameColor = (name == username) ? Color::BRIGHT_GREEN : Color::BRIGHT_WHITE;
-                                        
-                                        std::cout << "║ " << nameColor << name << Color::RESET << ": " 
-                                                  << Color::BRIGHT_YELLOW << score << Color::RESET;
-                                        
-                                        
-                                        int padding = 40 - name.length() - score.length() - 2; 
-                                        std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_MAGENTA << "║\n";
-                                    } else {
-                                        std::cout << "║ " << Color::BRIGHT_WHITE << line << Color::RESET;
-                                        int padding = 40 - line.length();
-                                        std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_MAGENTA << "║\n";
-                                    }
+                                std::sort(leaderboardEntries.begin(), leaderboardEntries.end(), [](const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) { return a.second > b.second; });
+                                const std::vector<std::string> medals = {"🥇", "🥈", "🥉"};
+                                for (size_t i = 0; i < leaderboardEntries.size(); ++i) {
+                                    std::string position = (i < 3) ? medals[i] + " " : std::to_string(i + 1) + ". ";
+                                    std::string name = leaderboardEntries[i].first;
+                                    std::string scoreStr = std::to_string(leaderboardEntries[i].second);
+                                    std::string nameColor = (name == username) ? Color::BRIGHT_GREEN : Color::BRIGHT_WHITE;
+                                    std::cout << "║ " << Color::BRIGHT_YELLOW << position << nameColor << name << Color::RESET;
+                                    int padding = 40 - position.length() - name.length() - scoreStr.length();
+                                    std::cout << std::string(std::max(0, padding), ' ') << Color::BRIGHT_CYAN << scoreStr << Color::BRIGHT_MAGENTA << " ║\n";
                                 }
+                                std::cout << "╚════════════════════════════════════════════╝\n" << Color::RESET;
+                            } else if (parsed.command == "ERROR") {
+                                printError(parsed.params.empty() ? "Could not fetch leaderboard." : parsed.params[0]);
+                            } else {
+                                printResponse(parsed);
                             }
-                            
-                            std::cout << "╚════════════════════════════════════════════╝\n" << Color::RESET;
+                        } else {
+                            printError("No response from server.");
                         }
                         waitForEnter();
-                        
                     } else if (gameChoice == 4) { 
                         
                         std::cout << "\n" << Color::BRIGHT_RED << "┌─────────────────────────────────┐\n";

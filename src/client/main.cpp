@@ -1595,7 +1595,7 @@ int main() {
                         } else {
                             std::cout << "\n" << Color::BRIGHT_CYAN << "Game end cancelled." << Color::RESET << "\n";
                         }
-                        waitForEnter();
+                        // waitForEnter();
                         
                     } else if (gameChoice == 5) { 
                         break;

@@ -38,4 +38,7 @@
 
 build/
 
+client_debug.log
+server_debug.log
+
 # End of https://www.toptal.com/developers/gitignore/api/c++

@@ -469,6 +469,10 @@ void playGameSession(int sock, const std::string& username, const std::string& c
     std::string leftover;
     if (initialQuestionRaw && !initialQuestionRaw->empty()) {
         leftover = *initialQuestionRaw;
+        } else {
+        // If no initial question, request the current question from the server
+        std::string getQMsg = buildMessage("GET_CURRENT_QUESTION", {username, currentRoomId});
+        sendWithNewline(sock, getQMsg);
     }
     bool gameFinished = false;
     
@@ -510,11 +514,28 @@ void playGameSession(int sock, const std::string& username, const std::string& c
         if (messages.empty()) {
             char buffer[4096];
             int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-            if (recvLen <= 0) break;
+            if (recvLen <= 0) {
+                // std::cerr << Color::BRIGHT_RED << "[DEBUG] recv() returned " << recvLen << ". Exiting game loop. errno=" << errno << Color::RESET << std::endl;
+                debugLogMsg(std::string("[DEBUG] recv() returned ") + std::to_string(recvLen) + ". Exiting game loop. errno=" + std::to_string(errno));
+                // Process any leftover buffer before breaking
+                while (true) {
+                    size_t pos = leftover.find('\n');
+                    if (pos == std::string::npos) break;
+                    std::string message = leftover.substr(0, pos);
+                    leftover = leftover.substr(pos + 1);
+                    if (!message.empty()) messages.push_back(message);
+                }
+                // If there are still messages, process them before breaking
+                if (!messages.empty()) {
+                    goto process_messages;
+                }
+                break;
+            }
             buffer[recvLen] = '\0';
             leftover += buffer;
             continue;
         }
+process_messages:
         // First, process all ANSWER_RESULT messages
         bool answerProcessed = false;
         for (const auto& message : messages) {
@@ -571,18 +592,21 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                         std::cout << "         '::. .'\n";
                         std::cout << "           ) (\n";
                         std::cout << "         _.' '._\n";
-                        std::cout << "        `\"\"\"\"\"\"`\n" << Color::RESET;
+                        std::cout << "        `\"\"\"\"\"`\n" << Color::RESET;
                         std::cout << Color::BRIGHT_GREEN << "    CONGRATULATIONS!\n" << Color::RESET;
                     }
                     gameFinished = true;
-                    break;
                 }
                 answerProcessed = true;
+                waitForEnter();
             }
         }
         if (gameFinished) break;
-        // If we just processed an answer, request the next question
+        // If we just processed an answer, clear leftover and messages, request the next question, and continue
         if (answerProcessed && !gameFinished) {
+            leftover.clear();
+            messages.clear();
+            // std::cout << "[DEBUG] CLIENT: Sending GET_CURRENT_QUESTION for username=" << username << ", room=" << currentRoomId << std::endl;
             std::string getQMsg = buildMessage("GET_CURRENT_QUESTION", {username, currentRoomId});
             sendWithNewline(sock, getQMsg);
             // Wait for the next question to arrive in the next loop iteration
@@ -659,6 +683,7 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                 std::cout << std::string(50, ' ') << "\r" << std::flush;
                 UI::spinner("Submitting answer", 800);
                     std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
+                    // std::cout << "[DEBUG] CLIENT: Sending SUBMIT_ANSWER for username=" << username << ", room=" << currentRoomId << ", answer=" << ans << std::endl;
                     sendWithNewline(sock, submitMsg);
                 break;
             }
@@ -683,7 +708,7 @@ void playGameSession(int sock, const std::string& username, const std::string& c
         if (gameFinished) break;
         // ... existing code ...
     }
-    waitForEnter();
+    // Remove any duplicate waitForEnter() here, as it is now inside ANSWER_RESULT block
 }
 
 
@@ -1161,10 +1186,6 @@ int main() {
                                 bool receivedMessage = false;
                                 
                                 
-                                int flags = fcntl(sock, F_GETFL, 0);
-                                fcntl(sock, F_SETFL, flags | O_NONBLOCK);
-                                
-                                
                                 time_t startTime = time(NULL);
                                 while (!receivedMessage && (time(NULL) - startTime) < 30) { 
                                     std::cout << Color::BRIGHT_CYAN << spinChars[spinIdx] << " " 
@@ -1204,8 +1225,6 @@ int main() {
                                     }
                                 }
                                 
-                                
-                                fcntl(sock, F_SETFL, flags);
                                 
                                 if (!receivedMessage) {
                                     std::cout << Color::BRIGHT_YELLOW << "\nStill waiting for the game to start... Press Enter to return to menu." << Color::RESET << "\n";
@@ -1311,6 +1330,7 @@ int main() {
                             }
                         }
                         playGameSession(sock, username, currentRoomId, leftover.empty() ? nullptr : &leftover);
+                        // Automatically fetch and display leaderboard after game ends
                         waitForEnter();
                         
                     } else if (gameChoice == 2) { 
@@ -1443,7 +1463,7 @@ int main() {
                         } else {
                             std::cout << "\n" << Color::BRIGHT_CYAN << "Game end cancelled." << Color::RESET << "\n";
                         }
-                        // waitForEnter();
+                        waitForEnter();
                         
                     } else if (gameChoice == 5) { 
                         break;

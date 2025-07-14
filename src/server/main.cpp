@@ -187,6 +187,7 @@ std::string processCommand(const ProtocolMessage& parsed, ClientSession& session
             int answerIndex = std::stoi(parsed.params[2]);
             std::string result = gameEngine.submitAnswer(session.currentRoomId, session.username, answerIndex);
             response = buildMessage("GAME_RESPONSE", {result});
+            debugLogMsg("SUBMIT_ANSWER: Sent feedback to " + session.username + ": '" + response + "'");
             // Do NOT send the next question here. Client must request it after processing feedback.
         } else {
             response = buildMessage("ERROR", {"Invalid submit answer parameters"});

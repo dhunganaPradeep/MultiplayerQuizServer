@@ -341,3 +341,94 @@ GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|Mars|24
 
 === Client Debug Log Started: Mon Jul 14 23:36:23 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:43:33 2025
+
+=== Client Debug Log Started: Mon Jul 14 23:43:33 2025
+[DEBUG] Logging in with username: 'random' password: 'test'
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:45:24 2025
+
+=== Client Debug Log Started: Mon Jul 14 23:45:36 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:49:16 2025
+
+=== Client Debug Log Started: Mon Jul 14 23:49:26 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:55:11 2025
+
+=== Client Debug Log Started: Mon Jul 14 23:55:17 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'regex' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:58:02 2025
+
+=== Client Debug Log Started: Mon Jul 14 23:58:02 2025
+[DEBUG] Logging in with username: 'vision' password: 'test'
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:06:27 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:06:30 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:08:15 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:08:19 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'visiokn' password: 'tgest'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:11:30 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:11:37 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:17:24 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:17:28 2025
+[DEBUG] Logging in with username: 'vision' password: 'test'
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:21:15 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:21:18 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:27:35 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:27:35 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:28:46 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:28:52 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:34:56 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:35:01 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Tue Jul 15 00:41:52 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:41:55 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'
+[DEBUG] [DEBUG] recv() returned -1. Exiting game loop. errno=11
+
+=== Client Debug Log Started: Tue Jul 15 00:48:43 2025
+
+=== Client Debug Log Started: Tue Jul 15 00:48:46 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+[DEBUG] Logging in with username: 'vision' password: 'test'

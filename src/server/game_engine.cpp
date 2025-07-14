@@ -2,6 +2,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
+#include <iostream> // Added for debug logs
 
 GameEngine::GameEngine(RoomManager& rm, QuestionManager& qm) 
     : roomManager(rm), questionManager(qm) {
@@ -209,6 +210,8 @@ std::string GameEngine::submitAnswer(int roomId, const std::string& username, in
     auto& gameSession = gameSessions[roomId];
     auto& questions = roomQuestions[roomId];
     int& playerIdx = gameSession.playerQuestionIndex[username];
+    // Debug log before increment
+    std::cout << "[DEBUG] submitAnswer: username=" << username << ", BEFORE: playerQuestionIndex=" << playerIdx << ", answerIndex=" << answerIndex << std::endl;
     if (playerIdx >= static_cast<int>(questions.size())) {
         return "ERROR|No more questions|GAME_FINISHED";
     }
@@ -228,6 +231,8 @@ std::string GameEngine::submitAnswer(int roomId, const std::string& username, in
     bool correct = question.isCorrectAnswer(answerIndex - 1);
     awardPoints(roomId, username, correct, timeBonus);
     playerIdx++;
+    // Debug log after increment
+    std::cout << "[DEBUG] submitAnswer: username=" << username << ", AFTER: playerQuestionIndex=" << playerIdx << std::endl;
     bool finished = (playerIdx >= static_cast<int>(questions.size()));
     std::ostringstream oss;
     oss << "ANSWER_RESULT|" << (correct ? "CORRECT" : "INCORRECT") 

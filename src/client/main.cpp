@@ -348,7 +348,7 @@ void printResponse(const ProtocolMessage& parsed) {
         if (parsed.params.size() > 3u) {
             
             std::cout << Color::BRIGHT_BLUE << "                        │" << Color::RESET << "\n";
-            for (const auto& param : parsed.params) {
+    for (const auto& param : parsed.params) {
                 std::cout << Color::BRIGHT_BLUE << "│   " << Color::BRIGHT_CYAN << "• " << Color::BRIGHT_WHITE << param << Color::RESET;
                 int itemPadding = 34 - 5 - param.length(); 
                 std::cout << std::string(std::max(0, itemPadding), ' ') << Color::BRIGHT_BLUE << "│" << Color::RESET << "\n";
@@ -511,8 +511,8 @@ void playGameSession(int sock, const std::string& username, const std::string& c
             char buffer[4096];
             int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
             if (recvLen <= 0) break;
-            buffer[recvLen] = '\0';
-            leftover += buffer;
+                buffer[recvLen] = '\0';
+                leftover += buffer;
             continue;
         }
         // First, process all ANSWER_RESULT messages
@@ -654,18 +654,13 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                         std::this_thread::sleep_for(std::chrono::seconds(1));
                     }
                 });
-<<<<<<< Updated upstream
-                
-                
-=======
                 std::cout << "\n\n";
->>>>>>> Stashed changes
                 ans = getInput(Color::BRIGHT_WHITE + "Enter your answer (option number): " + Color::RESET);
                 timerThread.detach(); 
                 std::cout << std::string(50, ' ') << "\r" << std::flush;
                 UI::spinner("Submitting answer", 800);
-                std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
-                sendWithNewline(sock, submitMsg);
+                    std::string submitMsg = buildMessage("SUBMIT_ANSWER", {username, currentRoomId, ans});
+                    sendWithNewline(sock, submitMsg);
                 break;
             }
             // Also handle GAME_STARTED as info only
@@ -681,10 +676,10 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                     } else {
                         std::cout << Color::BRIGHT_YELLOW << parsed.params[i] << Color::RESET;
                     }
-                }
+                    }
                 std::cout << "\n\n";
-                continue;
-            }
+                    continue;
+                }
         }
         if (gameFinished) break;
         // ... existing code ...
@@ -750,7 +745,7 @@ int main() {
         std::cerr << Color::BRIGHT_RED << "✗ Socket creation failed." << Color::RESET << std::endl;
         return 1;
     }
-    
+
     
     UI::progressBar(500, "Creating network socket");
 
@@ -758,7 +753,7 @@ int main() {
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(PORT);
     serverAddr.sin_addr.s_addr = inet_addr(SERVER_IP);
-    
+
     UI::typeText("Connecting to quiz server...", 20, Color::BRIGHT_YELLOW);
 
     
@@ -767,7 +762,7 @@ int main() {
         close(sock);
         return 1;
     }
-    
+
     
     std::cout << Color::BRIGHT_GREEN << "✓ Connected to server successfully!" << Color::RESET << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -854,7 +849,7 @@ int main() {
                         passwordBytes += hex;
                     }
                     debugLogMsg(passwordBytes);
-                    std::string registerMsg = buildMessage("REGISTER", {username, password});
+                std::string registerMsg = buildMessage("REGISTER", {username, password});
                     sendWithNewline(sock, registerMsg);
                 recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
                 if (recvLen > 0) {
@@ -871,16 +866,16 @@ int main() {
                         }
                         std::cout << Color::BRIGHT_GREEN << "✓ Account created successfully!" << Color::RESET << "\n";
                         std::cout << "\n" << Color::BRIGHT_CYAN << "You can now log in with your credentials." << Color::RESET << "\n";
-                        break;
-                    } else if (parsed.command == "ERROR" && !parsed.params.empty()) {
-                        printError(parsed.params[0]);
+                            break;
+                        } else if (parsed.command == "ERROR" && !parsed.params.empty()) {
+                            printError(parsed.params[0]);
                     } else {
                         printError("Registration failed.");
+                        }
                     }
+                    waitForEnter();
                 }
                 waitForEnter();
-            }
-            waitForEnter();
                 
             } else if (choice == 2) { 
                 clearScreen();
@@ -922,15 +917,15 @@ int main() {
                     UI::spinner("Verifying credentials", 1200);
                     
                     debugLogMsg("Logging in with username: '" + username + "' password: '" + password + "'");
-                    std::string loginMsg = buildMessage("LOGIN", {username, password});
+                std::string loginMsg = buildMessage("LOGIN", {username, password});
                     sendWithNewline(sock, loginMsg);
-                    recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                    if (recvLen > 0) {
-                        buffer[recvLen] = '\0';
-                        ProtocolMessage parsed = parseMessage(buffer);
-                        printResponse(parsed);
-                        if (parsed.command == "OK") {
-                            loggedIn = true;
+                recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                if (recvLen > 0) {
+                    buffer[recvLen] = '\0';
+                    ProtocolMessage parsed = parseMessage(buffer);
+                    printResponse(parsed);
+                    if (parsed.command == "OK") {
+                        loggedIn = true;
                             
                             
                             std::cout << "\n";
@@ -945,8 +940,8 @@ int main() {
                             break;
                         } else if (parsed.command == "ERROR" && !parsed.params.empty()) {
                             printError(parsed.params[0]);
-                        } else {
-                            printError("Login failed.");
+                    } else {
+                        printError("Login failed.");
                         }
                     }
                     waitForEnter();
@@ -1088,7 +1083,7 @@ int main() {
                                 waitForEnter();
                             }
                         } else {
-                            waitForEnter();
+                        waitForEnter();
                         }
                         
                     } else if (roomChoice == 2) { 
@@ -1111,7 +1106,7 @@ int main() {
                             if (parsed.params.empty()) {
                                 std::cout << "║ " << Color::BRIGHT_YELLOW << "No rooms available. Create one to get started!" << Color::BRIGHT_CYAN << " ║\n";
                             } else {
-                                for (size_t i = 0; i + 1 < parsed.params.size(); i += 2) {
+                            for (size_t i = 0; i + 1 < parsed.params.size(); i += 2) {
                                     std::string roomId = parsed.params[i];
                                     std::string roomName = parsed.params[i+1];
                                     
@@ -1399,7 +1394,7 @@ int main() {
                             } else if (parsed.command == "ERROR") {
                                 printError(parsed.params.empty() ? "Could not fetch leaderboard." : parsed.params[0]);
                             } else {
-                                printResponse(parsed);
+                            printResponse(parsed);
                             }
                         } else {
                             printError("No response from server.");
@@ -1421,14 +1416,14 @@ int main() {
                             std::cout << "\n";
                             UI::spinner("Ending game", 1000);
                             
-                            std::string endMsg = buildMessage("END_GAME", {username, currentRoomId});
-                            sendWithNewline(sock, endMsg);
-                            
-                            recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
-                            if (recvLen > 0) {
-                                buffer[recvLen] = '\0';
-                                ProtocolMessage parsed = parseMessage(buffer);
-                                printResponse(parsed);
+                        std::string endMsg = buildMessage("END_GAME", {username, currentRoomId});
+                        sendWithNewline(sock, endMsg);
+                        
+                        recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                        if (recvLen > 0) {
+                            buffer[recvLen] = '\0';
+                            ProtocolMessage parsed = parseMessage(buffer);
+                            printResponse(parsed);
                                 
                                 if (parsed.command == "OK") {
                                     
@@ -1489,4 +1484,4 @@ int main() {
     close(sock);
     closeDebugLog();
     return 0;
-}
+} 

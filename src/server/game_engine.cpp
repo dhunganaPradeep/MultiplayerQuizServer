@@ -94,47 +94,40 @@ void GameEngine::awardPoints(int roomId, const std::string& username, bool corre
     playerScore.totalAnswers++;
     if (correct) {
         playerScore.correctAnswers++;
-        playerScore.score += 10 + timeBonus; // Base 10 points + time bonus
+        playerScore.score += 10 + timeBonus; 
     }
     playerScore.lastAnswerTime = std::chrono::steady_clock::now();
 }
 
 std::string GameEngine::startGame(int roomId, const std::string& username, int questionCount) {
-    // Check if user is room owner
     auto room = roomManager.getRoom(roomId);
     if (!room || room->getHostUsername() != username) {
         return "ERROR|Only room owner can start the game";
     }
     
-    // Check if game is already active
     if (isGameActive(roomId)) {
         return "ERROR|Game is already in progress";
     }
     
-    // Check if enough players
     auto players = roomManager.getRoomPlayers(roomId);
     if (players.size() < 1) {
         return "ERROR|Need at least 1 player to start";
     }
     
-    // Get questions
     auto questions = questionManager.getRandomQuestions(questionCount);
     if (questions.empty()) {
         return "ERROR|No questions available";
     }
     
-    // Initialize game state
     roomQuestions[roomId] = questions;
     roomPlayers[roomId] = players;
     
     auto& gameSession = gameSessions[roomId];
     gameSession.currentState = GameSession::WAITING;
     gameSession.totalQuestions = questions.size();
-    // Set game timer
     gameSession.gameStartTime = std::chrono::steady_clock::now();
-    gameSession.gameDurationSeconds = 90; // 1.5 minutes
+    gameSession.gameDurationSeconds = 90; 
     
-    // Initialize player scores
     auto& scores = playerScores[roomId];
     scores.clear();
     for (const auto& player : players) {
@@ -143,7 +136,6 @@ std::string GameEngine::startGame(int roomId, const std::string& username, int q
         gameSession.playerQuestionIndex[player] = 0;
     }
     
-    // Start the game
     startNewRound(roomId);
     
     std::ostringstream oss;
@@ -163,10 +155,8 @@ std::string GameEngine::endGame(int roomId, const std::string& username) {
     
     endRound(roomId);
     
-    // Get final leaderboard
     std::string leaderboard = getLeaderboard(roomId);
     
-    // Cleanup
     cleanupRoom(roomId);
     
     return "GAME_ENDED|" + leaderboard;
@@ -223,18 +213,15 @@ std::string GameEngine::submitAnswer(int roomId, const std::string& username, in
         return "ERROR|No more questions|GAME_FINISHED";
     }
     const auto& question = questions[playerIdx];
-    // Validate answer index
     if (answerIndex < 1 || answerIndex > question.getOptionCount()) {
         return "ERROR|Invalid answer index";
     }
-    // Check if already answered (optional: can add per-player answer tracking)
     auto& scores = playerScores[roomId];
     auto& playerScore = scores[username];
     auto now = std::chrono::steady_clock::now();
     auto timeDiff = std::chrono::duration_cast<std::chrono::seconds>(now - gameSession.questionStartTime);
-    // Calculate time bonus (max 5 points for answering quickly)
     int timeBonus = 0;
-    if (timeDiff.count() <= 10) { // Within 10 seconds
+    if (timeDiff.count() <= 10) { 
         timeBonus = 5 - (timeDiff.count() / 2);
     }
     // Check if answer is correct
@@ -261,11 +248,11 @@ std::string GameEngine::getGameInfo(int roomId, const std::string& /*username*/)
     std::ostringstream oss;
     oss << "GAME_INFO|" << getGameStatus(roomId);
     
-    // Add player count
+    
     auto players = getActivePlayers(roomId);
     oss << "|Players:" << players.size();
     
-    // Add current leaderboard
+    
     oss << "|" << getLeaderboard(roomId);
     
     return oss.str();
@@ -300,20 +287,20 @@ std::vector<std::string> GameEngine::getActivePlayers(int roomId) {
 }
 
 void GameEngine::removePlayer(int roomId, const std::string& username) {
-    // Remove from room players
+    
     auto it = roomPlayers.find(roomId);
     if (it != roomPlayers.end()) {
         auto& players = it->second;
         players.erase(std::remove(players.begin(), players.end(), username), players.end());
     }
     
-    // Remove from scores
+
     auto scoreIt = playerScores.find(roomId);
     if (scoreIt != playerScores.end()) {
         scoreIt->second.erase(username);
     }
     
-    // If no players left, end the game
+
     if (getPlayerCount(roomId) == 0) {
         cleanupRoom(roomId);
     }

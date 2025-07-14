@@ -69,12 +69,10 @@ bool RoomManager::leaveRoom(int roomId, const std::string& username) {
     
     room.removePlayer(username);
     
-    // If room is empty, delete it
     if (room.getPlayerCount() == 0) {
         rooms.erase(it);
         std::cout << "Room " << roomId << " deleted (empty)." << std::endl;
     } else {
-        // If host left, assign new host
         if (room.getHostUsername() == username) {
             if (room.getPlayerCount() > 0) {
                 room.hostUsername = room.getPlayers()[0];
@@ -154,17 +152,14 @@ bool RoomManager::startGame(int roomId, const std::string& hostUsername) {
     
     Room& room = it->second;
     
-    // Check if user is the host
     if (room.getHostUsername() != hostUsername) {
         return false;
     }
     
-    // Check if game is already in progress
     if (room.isGameInProgress()) {
         return false;
     }
     
-    // Check if enough players
     if (room.getPlayerCount() < GameConstants::MIN_PLAYERS_TO_START) {
         return false;
     }

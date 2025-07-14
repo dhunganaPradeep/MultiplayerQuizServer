@@ -18,8 +18,8 @@ enum class JoinRoomResult {
 
 class RoomManager {
 private:
-    std::map<int, Room> rooms;  // roomId -> Room
-    int nextRoomId;  // Auto-incrementing room ID
+    std::map<int, Room> rooms;  
+    int nextRoomId; 
 
 public:
     RoomManager();
@@ -31,7 +31,6 @@ public:
     bool leaveRoom(int roomId, const std::string& username);
     bool deleteRoom(int roomId);
     
-    // Room queries
     Room* getRoom(int roomId);
     std::vector<Room> getAllRooms() const;
     std::vector<Room> getAvailableRooms() const;  // Rooms that are waiting for players
@@ -39,7 +38,6 @@ public:
     bool isUserInRoom(const std::string& username) const;
     int getUserRoomId(const std::string& username) const;
     
-    // Room state management
     bool startGame(int roomId, const std::string& hostUsername);
     bool endGame(int roomId);
     bool isGameInProgress(int roomId) const;
@@ -49,12 +47,10 @@ public:
     int getRoomPlayerCount(int roomId) const;
     bool isPlayerInRoom(int roomId, const std::string& username) const;
     
-    // Utility
     int getRoomCount() const { return static_cast<int>(rooms.size()); }
     void clearRooms() { rooms.clear(); nextRoomId = 1; }
     
-    // Room ID generation
     int generateRoomId() { return nextRoomId++; }
 };
 
-#endif // ROOM_MANAGER_H 
+#endif 

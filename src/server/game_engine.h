@@ -27,15 +27,15 @@ struct GameSession {
     };
     
     State currentState;
-    int currentQuestionIndex; // (legacy, can be kept for compatibility)
+    int currentQuestionIndex; 
     int totalQuestions;
     std::chrono::steady_clock::time_point roundStartTime;
     std::chrono::steady_clock::time_point questionStartTime;
-    int roundTimeLimit; // seconds
-    int questionTimeLimit; // seconds
-    int gameDurationSeconds; // total game time in seconds
+    int roundTimeLimit; 
+    int questionTimeLimit;
+    int gameDurationSeconds;
     std::chrono::steady_clock::time_point gameStartTime;
-    std::map<std::string, int> playerQuestionIndex; // per-player question index
+    std::map<std::string, int> playerQuestionIndex;
     
     GameSession() : currentState(WAITING), currentQuestionIndex(0), 
                     totalQuestions(0), roundTimeLimit(300), questionTimeLimit(30),
@@ -44,10 +44,10 @@ struct GameSession {
 
 class GameEngine {
 private:
-    std::map<int, GameSession> gameSessions; // roomId -> gameSession
+    std::map<int, GameSession> gameSessions; 
     std::map<int, std::map<std::string, PlayerScore>> playerScores; // roomId -> {username -> score}
-    std::map<int, std::vector<Question>> roomQuestions; // roomId -> questions
-    std::map<int, std::vector<std::string>> roomPlayers; // roomId -> players
+    std::map<int, std::vector<Question>> roomQuestions; 
+    std::map<int, std::vector<std::string>> roomPlayers; 
     
     RoomManager& roomManager;
     QuestionManager& questionManager;
@@ -77,12 +77,10 @@ public:
     int getPlayerCount(int roomId);
     std::vector<std::string> getActivePlayers(int roomId);
     
-    // Cleanup
     void removePlayer(int roomId, const std::string& username);
     void cleanupRoom(int roomId);
 
-    // Timer check
     bool isGameTimerExpired(int roomId);
 };
 
-#endif // GAME_ENGINE_H 
+#endif

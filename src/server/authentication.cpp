@@ -9,7 +9,6 @@
 AuthenticationManager::AuthenticationManager(const std::string& dataFile) 
     : userDataFile(dataFile) {
     loadUsersFromFile();
-    // Create a default admin user if no users exist
     if (users.empty()) {
         createAdminUser("admin", "admin123");
     }
@@ -24,7 +23,6 @@ bool containsWhitespaceOrNewline(const std::string& s) {
 }
 
 bool AuthenticationManager::registerUser(const std::string& username, const std::string& password) {
-    // Validate input
     debugLogMsg("Attempting to register username: '" + username + "'");
     std::string currentUsers = "Current users: ";
     for (const auto& pair : users) currentUsers += "'" + pair.first + "' ";
@@ -32,7 +30,6 @@ bool AuthenticationManager::registerUser(const std::string& username, const std:
     if (username.empty() || password.empty()) {
         return false;
     }
-    // Reject whitespace or newlines in username or password
     if (containsWhitespaceOrNewline(username) || containsWhitespaceOrNewline(password)) {
         debugLogMsg("ERROR: Username and password must not contain spaces or newlines.");
         return false;
@@ -46,18 +43,15 @@ bool AuthenticationManager::registerUser(const std::string& username, const std:
         return false;
     }
     
-    // Check if username already exists
     debugLogMsg("Checking if username exists: '" + username + "'");
     if (userExists(username)) {
         debugLogMsg("Username already exists: '" + username + "'");
         return false;
     }
     
-    // Create new user
     User newUser(username, password);
     users[username] = newUser;
     
-    // Save to file
     saveUsersToFile();
     
     std::cout << "User registered: " << username << std::endl;

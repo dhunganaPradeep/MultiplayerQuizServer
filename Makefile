@@ -46,6 +46,12 @@ CLIENT_EXEC = $(BUILD_DIR)/client
 # Default target
 all: $(BUILD_DIR) $(SERVER_EXEC) $(CLIENT_EXEC)
 
+# Server target
+server: $(BUILD_DIR) $(SERVER_EXEC)
+
+# Client target
+client: $(BUILD_DIR) $(CLIENT_EXEC)
+
 # Ensure build directory exists
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)

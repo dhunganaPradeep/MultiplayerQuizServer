@@ -1,318 +1,141 @@
 
-=== Client Debug Log Started: Mon Jul 14 16:46:59 2025
+=== Client Debug Log Started: Mon Jul 14 18:04:04 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:04:04 2025
+[DEBUG] Registering with username: 'testuser1' password: 'password123'
+[DEBUG] Username raw bytes: 74 65 73 74 75 73 65 72 31 
+[DEBUG] Password raw bytes: 70 61 73 73 77 6F 72 64 31 32 33 
+
+=== Client Debug Log Started: Mon Jul 14 18:04:19 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:04:34 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:20:50 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:20:50 2025
 [DEBUG] Registering with username: 'test' password: 'test'
 [DEBUG] Username raw bytes: 74 65 73 74 
 [DEBUG] Password raw bytes: 74 65 73 74 
 
-=== Client Debug Log Started: Mon Jul 14 16:47:15 2025
+=== Client Debug Log Started: Mon Jul 14 18:21:00 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
 
-=== Client Debug Log Started: Mon Jul 14 16:54:12 2025
+=== Client Debug Log Started: Mon Jul 14 18:21:10 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|ERROR|No active game
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|ERROR|No active game'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 2 params.
-[DEBUG] Received 116 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 39 30 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|1/5|What is the powerhouse of the cell?|90|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|1/5|What is the powerhouse of the cell?|90|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What is the powerhouse of the cell?|90|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Received 49 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 47 41 4D 45 5F 53 54 41 52 54 45 44 7C 35 20 71 75 65 73 74 69 6F 6E 73 7C 31 20 70 6C 61 79 65 72 73 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|GAME_STARTED|5 questions|1 players
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|GAME_STARTED|5 questions|1 players
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|GAME_STARTED|5 questions|1 players'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 3 params.
-[DEBUG] Received 112 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 38 37 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|2/5|What force keeps us on the ground?|87|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What force keeps us on the ground?|87|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-'
-[DEBUG] Received 41 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 32 7C 31 34 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|14
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What force keeps us on the ground?|87|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|14
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|2/5|What force keeps us on the ground?|87|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|14'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 4 params.
-[DEBUG] Received 93 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 38 34 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|3/5|What is the chemical symbol for water?|84|1.H2O|2.CO2|3.O2|4.NaCl
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What is the chemical symbol for water?|84|1.H2O|2.CO2|3.O2|4.NaCl
-'
-[DEBUG] Received 41 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 32 36 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|26
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What is the chemical symbol for water?|84|1.H2O|2.CO2|3.O2|4.NaCl
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|26
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|3/5|What is the chemical symbol for water?|84|1.H2O|2.CO2|3.O2|4.NaCl'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|26'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 4 params.
-[DEBUG] Received 125 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 37 37 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|4/5|What gas do plants absorb from the atmosphere?|77|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|4/5|What gas do plants absorb from the atmosphere?|77|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Received 41 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 31 7C 33 36 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|1|36
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|4/5|What gas do plants absorb from the atmosphere?|77|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|1|36
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|4/5|What gas do plants absorb from the atmosphere?|77|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|1|36'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 4 params.
-[DEBUG] Received 104 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 35 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 37 35 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|5/5|What planet is known as the Red Planet?|75|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|5/5|What planet is known as the Red Planet?|75|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Received 41 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 34 36 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|46
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|5/5|What planet is known as the Red Planet?|75|1.Venus|2.Mars|3.Jupiter|4.Saturn
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|46
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|5/5|What planet is known as the Red Planet?|75|1.Venus|2.Mars|3.Jupiter|4.Saturn'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|46'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 4 params.
-[DEBUG] Received 52 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 45 52 52 4F 52 7C 4E 6F 20 6D 6F 72 65 20 71 75 65 73 74 69 6F 6E 73 7C 47 41 4D 45 5F 46 49 4E 49 53 48 45 44 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED
-'
-[DEBUG] Received 55 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 32 7C 35 36 7C 47 41 4D 45 5F 46 49 4E 49 53 48 45 44 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|56|GAME_FINISHED
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|56|GAME_FINISHED
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 3 params.
 
-=== Client Debug Log Started: Mon Jul 14 17:01:54 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:01:58 2025
+=== Client Debug Log Started: Mon Jul 14 18:21:25 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Logging in with username: 'regex' password: 'test'
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
 
-=== Client Debug Log Started: Mon Jul 14 17:09:30 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:09:37 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:09:43 2025
+=== Client Debug Log Started: Mon Jul 14 18:21:40 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Logging in with username: 'regex' password: 'test'
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Received 49 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 47 41 4D 45 5F 53 54 41 52 54 45 44 7C 35 20 71 75 65 73 74 69 6F 6E 73 7C 32 20 70 6C 61 79 65 72 73 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|GAME_STARTED|5 questions|2 players
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|GAME_STARTED|5 questions|2 players
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|GAME_STARTED|5 questions|2 players'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 3 params.
-[DEBUG] Received 125 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 38 37 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|87|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|87|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Received 49 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 47 72 61 76 69 74 79 7C 31 34 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|14
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|87|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|14
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|87|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|14'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 5 params.
-[DEBUG] Received 104 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 37 38 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|78|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|78|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Received 56 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 32 34 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Carbon dioxide|24
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|78|1.Venus|2.Mars|3.Jupiter|4.Saturn
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Carbon dioxide|24
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|78|1.Venus|2.Mars|3.Jupiter|4.Saturn'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Carbon dioxide|24'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 5 params.
-[DEBUG] Received 93 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 36 38 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|4/5|What is the chemical symbol for water?|68|1.H2O|2.CO2|3.O2|4.NaCl
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|4/5|What is the chemical symbol for water?|68|1.H2O|2.CO2|3.O2|4.NaCl
-'
-[DEBUG] Received 46 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 32 7C 4D 61 72 73 7C 33 34 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|Mars|34
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|4/5|What is the chemical symbol for water?|68|1.H2O|2.CO2|3.O2|4.NaCl
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|Mars|34
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|4/5|What is the chemical symbol for water?|68|1.H2O|2.CO2|3.O2|4.NaCl'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Received 125 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 35 38 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|58|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|58|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Received 49 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 47 72 61 76 69 74 79 7C 31 30 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|10
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|58|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|10
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|58|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|10'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 5 params.
-[DEBUG] Received 104 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 35 30 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|50|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|50|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Received 56 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 32 30 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Carbon dioxide|20
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|50|1.Venus|2.Mars|3.Jupiter|4.Saturn
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Carbon dioxide|20
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|50|1.Venus|2.Mars|3.Jupiter|4.Saturn'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
 
-=== Client Debug Log Started: Mon Jul 14 17:23:52 2025
+=== Client Debug Log Started: Mon Jul 14 18:21:46 2025
 
-=== Client Debug Log Started: Mon Jul 14 17:23:52 2025
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:48 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:51 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:51 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:21:51 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:23:02 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:23:02 2025
+[DEBUG] Registering with username: 'test' password: 'test'
+[DEBUG] Username raw bytes: 74 65 73 74 
+[DEBUG] Password raw bytes: 74 65 73 74 
+
+=== Client Debug Log Started: Mon Jul 14 18:23:12 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Logging in with username: 'regex' password: 'test'
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Using initialQuestionRaw
-[DEBUG] Initial leftover buffer: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Received 49 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 47 41 4D 45 5F 53 54 41 52 54 45 44 7C 35 20 71 75 65 73 74 69 6F 6E 73 7C 32 20 70 6C 61 79 65 72 73 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|GAME_STARTED|5 questions|2 players
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|GAME_STARTED|5 questions|2 players
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|GAME_STARTED|5 questions|2 players'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 3 params.
-[DEBUG] Received 104 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 38 37 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|2/5|What planet is known as the Red Planet?|87|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What planet is known as the Red Planet?|87|1.Venus|2.Mars|3.Jupiter|4.Saturn
-'
-[DEBUG] Received 49 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 33 7C 47 72 61 76 69 74 79 7C 31 34 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|14
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|2/5|What planet is known as the Red Planet?|87|1.Venus|2.Mars|3.Jupiter|4.Saturn
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|14
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|2/5|What planet is known as the Red Planet?|87|1.Venus|2.Mars|3.Jupiter|4.Saturn'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
-[DEBUG] Processing message: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|3|Gravity|14'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 5 params.
-[DEBUG] Received 125 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 37 36 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|QUESTION|3/5|What gas do plants absorb from the atmosphere?|76|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What gas do plants absorb from the atmosphere?|76|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-'
-[DEBUG] Received 46 bytes from server.
-[DEBUG] Raw bytes received: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 41 4E 53 57 45 52 5F 52 45 53 55 4C 54 7C 43 4F 52 52 45 43 54 7C 32 7C 4D 61 72 73 7C 32 34 0A 
-[DEBUG] Raw buffer as string: 'GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|Mars|24
-'
-[DEBUG] Buffer after append: 'GAME_RESPONSE|QUESTION|3/5|What gas do plants absorb from the atmosphere?|76|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen
-GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|Mars|24
-'
-[DEBUG] Processing message: 'GAME_RESPONSE|QUESTION|3/5|What gas do plants absorb from the atmosphere?|76|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Parsed command: 'GAME_RESPONSE' with 8 params.
 
-=== Client Debug Log Started: Mon Jul 14 17:26:46 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:26:46 2025
+=== Client Debug Log Started: Mon Jul 14 18:23:22 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Logging in with username: 'regex' password: 'test'
 
-=== Client Debug Log Started: Mon Jul 14 17:29:53 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:29:53 2025
+=== Client Debug Log Started: Mon Jul 14 18:23:37 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Logging in with username: 'regex' password: 'test'
 
-=== Client Debug Log Started: Mon Jul 14 17:32:54 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:32:54 2025
+=== Client Debug Log Started: Mon Jul 14 18:23:52 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
-[DEBUG] Logging in with username: 'regex' password: 'test'
 
-=== Client Debug Log Started: Mon Jul 14 17:35:48 2025
-
-=== Client Debug Log Started: Mon Jul 14 17:35:48 2025
-[DEBUG] Logging in with username: 'regex' password: 'test'
+=== Client Debug Log Started: Mon Jul 14 18:23:55 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:23:57 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:24:27 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:24:47 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:35:56 2025
+[DEBUG] Registering with username: 'test' password: 'test'
+[DEBUG] Username raw bytes: 74 65 73 74 
+[DEBUG] Password raw bytes: 74 65 73 74 
+
+=== Client Debug Log Started: Mon Jul 14 18:45:06 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:45:06 2025
+[DEBUG] Registering with username: 'test' password: 'test'
+[DEBUG] Username raw bytes: 74 65 73 74 
+[DEBUG] Password raw bytes: 74 65 73 74 
+[DEBUG] Registering with username: '2' password: 'test'
+[DEBUG] Username raw bytes: 32 
+[DEBUG] Password raw bytes: 74 65 73 74 
+
+=== Client Debug Log Started: Mon Jul 14 18:45:16 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:45:16 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:45:18 2025
+[DEBUG] Registering with username: 'player2' password: 'test'
+[DEBUG] Username raw bytes: 70 6C 61 79 65 72 32 
+[DEBUG] Password raw bytes: 74 65 73 74 
+[DEBUG] Logging in with username: 'player2' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 18:49:30 2025
+
+=== Client Debug Log Started: Mon Jul 14 18:49:30 2025
+[DEBUG] Registering with username: 'test' password: 'test'
+[DEBUG] Username raw bytes: 74 65 73 74 
+[DEBUG] Password raw bytes: 74 65 73 74 
+
+=== Client Debug Log Started: Mon Jul 14 19:17:36 2025
+
+=== Client Debug Log Started: Mon Jul 14 19:21:49 2025
+[DEBUG] Registering with username: 'random' password: 'Anime@20'
+[DEBUG] Username raw bytes: 72 61 6E 64 6F 6D 
+[DEBUG] Password raw bytes: 41 6E 69 6D 65 40 32 30 
+[DEBUG] Registering with username: 'abc' password: 'abc'
+[DEBUG] Username raw bytes: 61 62 63 
+[DEBUG] Password raw bytes: 61 62 63 
+[DEBUG] Logging in with username: 'abc' password: 'abc'
+
+=== Client Debug Log Started: Mon Jul 14 19:22:43 2025
+[DEBUG] Logging in with username: 'abc' password: 'abc'
+
+=== Client Debug Log Started: Mon Jul 14 19:25:02 2025
+[DEBUG] Logging in with username: 'abc' password: 'abc'
+
+=== Client Debug Log Started: Mon Jul 14 19:28:15 2025
+[DEBUG] Logging in with username: 'abc' password: 'abc'

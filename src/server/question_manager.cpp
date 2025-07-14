@@ -8,7 +8,6 @@
 QuestionManager::QuestionManager(const std::string& dataFile) 
     : questionDataFile(dataFile), nextQuestionId(1) {
     
-    // Initialize random number generator
     auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
     rng.seed(static_cast<unsigned int>(seed));
     
@@ -47,7 +46,6 @@ bool QuestionManager::loadQuestionsFromFile() {
             std::getline(iss, option3, '|') &&
             std::getline(iss, option4, '|') &&
             iss >> questionId >> correctAnswerIndex) {
-            // Check for embedded newlines
             auto has_newline = [](const std::string& s) { return s.find('\n') != std::string::npos || s.find('\r') != std::string::npos; };
             if (has_newline(questionText) || has_newline(option1) || has_newline(option2) || has_newline(option3) || has_newline(option4)) {
                 std::cout << "[Warning] Skipping question with embedded newline: " << questionText << std::endl;

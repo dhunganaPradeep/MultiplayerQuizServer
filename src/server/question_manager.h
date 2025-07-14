@@ -9,17 +9,16 @@
 
 class QuestionManager {
 private:
-    std::vector<Question> questions;  // All loaded questions
-    std::map<int, Question> questionMap;  // questionId -> Question
-    std::string questionDataFile;  // File to load questions from
-    int nextQuestionId;  // Auto-incrementing question ID
-    std::mt19937 rng;  // Random number generator
+    std::vector<Question> questions;  
+    std::map<int, Question> questionMap;
+    std::string questionDataFile;  
+    int nextQuestionId; 
+    std::mt19937 rng;  
 
 public:
     QuestionManager(const std::string& dataFile = "data/questions.txt");
     ~QuestionManager();
 
-    // Question loading and management
     bool loadQuestionsFromFile();
     bool saveQuestionsToFile() const;
     bool addQuestion(const std::string& questionText, 
@@ -37,15 +36,12 @@ public:
     bool validateAnswer(int questionId, int answerIndex) const;
     bool questionExists(int questionId) const;
     
-    // Utility
     int getQuestionCount() const { return static_cast<int>(questions.size()); }
     void clearQuestions() { questions.clear(); questionMap.clear(); nextQuestionId = 1; }
     
-    // Question ID generation
     int generateQuestionId() { return nextQuestionId++; }
     
-    // Initialize with default questions if file is empty
     void initializeDefaultQuestions();
 };
 
-#endif // QUESTION_MANAGER_H 
+#endif  

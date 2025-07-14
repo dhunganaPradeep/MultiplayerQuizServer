@@ -12,4 +12,4 @@ void initDebugLog();
 void debugLogMsg(const std::string& msg);
 void closeDebugLog();
 
-#endif // DEBUG_LOG_H 
+#endif 

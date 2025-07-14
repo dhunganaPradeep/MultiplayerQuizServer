@@ -15,7 +15,6 @@
 
 #include "debug_log.h"
 
-// Remove Windows-specific headers and add POSIX socket headers
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -229,28 +228,23 @@ int main() {
     const int PORT = 8080;
     char buffer[1024];
     
-    // Initialize managers
     AuthenticationManager authManager;
     RoomManager roomManager;
     QuestionManager questionManager;
     GameEngine gameEngine(roomManager, questionManager);
 
-    // Client management
     std::map<int, ClientSession> clients;
     fd_set master, read_fds;
 
-    // 1. Create socket
     listenSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (listenSocket == -1) {
         std::cerr << "Socket creation failed." << std::endl;
         return 1;
     }
 
-    // 2. Set socket to non-blocking
     int flags = fcntl(listenSocket, F_GETFL, 0);
     fcntl(listenSocket, F_SETFL, flags | O_NONBLOCK);
 
-    // 3. Bind
     struct sockaddr_in serverAddr;
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = INADDR_ANY;
@@ -261,7 +255,6 @@ int main() {
         return 1;
     }
 
-    // 4. Listen
     if (listen(listenSocket, SOMAXCONN) == -1) {
         std::cerr << "Listen failed." << std::endl;
         close(listenSocket);
@@ -269,19 +262,15 @@ int main() {
     }
     std::cout << "Server listening on port " << PORT << "..." << std::endl;
 
-    // 5. Initialize select sets
     FD_ZERO(&master);
     FD_ZERO(&read_fds);
     FD_SET(listenSocket, &master);
 
-    // 6. Main server loop
     std::cout << "Server ready for multiple clients..." << std::endl;
     
     while (true) {
-        // Copy the master set for select
         read_fds = master;
         
-        // Wait for activity on any socket
         int maxfd = listenSocket;
         for (const auto& c : clients) if (c.first > maxfd) maxfd = c.first;
         int activity = select(maxfd + 1, &read_fds, NULL, NULL, NULL);
@@ -290,24 +279,20 @@ int main() {
             break;
         }
 
-        // Check for new connections
         if (FD_ISSET(listenSocket, &read_fds)) {
             int clientSocket = accept(listenSocket, NULL, NULL);
             if (clientSocket != -1) {
                 int clientFlags = fcntl(clientSocket, F_GETFL, 0);
                 fcntl(clientSocket, F_SETFL, clientFlags | O_NONBLOCK);
                 
-                // Add to master set
                 FD_SET(clientSocket, &master);
                 
-                // Create client session
                 clients.emplace(clientSocket, ClientSession(clientSocket));
                 
                 std::cout << "Client connected. Socket: " << clientSocket << " Total clients: " << clients.size() << std::endl;
             }
         }
 
-        // Check all clients for data
         std::vector<int> toRemove;
         
         for (auto it = clients.begin(); it != clients.end(); ++it) {
@@ -315,27 +300,21 @@ int main() {
             ClientSession& session = it->second;
             
             if (FD_ISSET(clientSocket, &read_fds)) {
-                // Try to receive data
                 int recvLen = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
                 
                 if (recvLen > 0) {
-                    // Data received
                     buffer[recvLen] = '\0';
                     std::string msg(buffer);
                     
-                    // Remove trailing newline before parsing
                     if (!msg.empty() && msg.back() == '\n') {
                         msg.pop_back();
                     }
                     
-                    // Parse message
                     ProtocolMessage parsed = parseMessage(msg);
                     debugLogMsg("Received from client " + std::to_string(clientSocket) + " (" + session.username + "): '" + msg + "' Parsed command: '" + parsed.command + "'");
                     
-                    // Process command and send response
                     std::string response = processCommand(parsed, session, authManager, roomManager, gameEngine, clients);
                     
-                    // Ensure response ends with a newline
                     if (response.empty() || response.back() != '\n') response += '\n';
                     int sendResult = send(clientSocket, response.c_str(), static_cast<int>(response.size()), 0);
                     if (sendResult == -1) {
@@ -344,11 +323,9 @@ int main() {
                     }
                     
                 } else if (recvLen == 0) {
-                    // Client disconnected
                     std::cout << "Client " << clientSocket << " (" << session.username << ") disconnected." << std::endl;
                     toRemove.push_back(clientSocket);
                 } else {
-                    // Error or would block
                     if (errno != EWOULDBLOCK && errno != EAGAIN) {
                         std::cerr << "Receive error for client " << clientSocket << ": " << errno << std::endl;
                         toRemove.push_back(clientSocket);
@@ -375,7 +352,6 @@ int main() {
         }
     }
 
-    // 8. Clean up
     for (auto& pair : clients) {
         close(pair.first);
     }

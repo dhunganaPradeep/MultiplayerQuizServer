@@ -8,17 +8,17 @@
 #include "user.h"
 
 enum class GameState {
-    WAITING,    // Waiting for players to join
-    PLAYING,    // Quiz is in progress
-    FINISHED    // Quiz is finished
+    WAITING,     
+    PLAYING,    
+    FINISHED    
 };
 
 struct Room {
     int roomId;
     std::string roomName;
     std::string hostUsername;
-    std::vector<std::string> players;  // List of usernames
-    std::map<std::string, int> playerScores;  // username -> score
+    std::vector<std::string> players;  
+    std::map<std::string, int> playerScores;
     int currentQuestionIndex;
     int totalQuestions;
     GameState gameState;
@@ -28,7 +28,6 @@ struct Room {
         : roomId(id), roomName(name), hostUsername(host), currentQuestionIndex(-1), 
           totalQuestions(0), gameState(GameState::WAITING) {}
 
-    // Basic getters
     int getRoomId() const { return roomId; }
     std::string getRoomName() const { return roomName; }
     std::string getHostUsername() const { return hostUsername; }

@@ -1,240 +1,198 @@
 
-=== Server Debug Log Started: Mon Jul 14 16:46:52 2025
+=== Server Debug Log Started: Mon Jul 14 18:04:02 2025
+[DEBUG] Received from client 5 (): 'QUIT' Parsed command: 'QUIT'
+[DEBUG] Received from client 5 (): 'REGISTER|testuser1|password123' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'testuser1'
+[DEBUG] Current users: 'admin' 'random' 'test' 
+[DEBUG] Checking if username exists: 'testuser1'
+[DEBUG] userExists called for: 'testuser1'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+
+=== Server Debug Log Started: Mon Jul 14 18:10:39 2025
+
+=== Server Debug Log Started: Mon Jul 14 18:18:36 2025
+
+=== Server Debug Log Started: Mon Jul 14 18:19:39 2025
+
+=== Server Debug Log Started: Mon Jul 14 18:20:24 2025
+
+=== Server Debug Log Started: Mon Jul 14 18:20:27 2025
+
+=== Server Debug Log Started: Mon Jul 14 18:20:48 2025
+[DEBUG] Received from client 5 (): 'QUIT' Parsed command: 'QUIT'
 [DEBUG] Received from client 5 (): 'REGISTER|test|test' Parsed command: 'REGISTER'
 [DEBUG] Attempting to register username: 'test'
-[DEBUG] Current users: 'admin' 'regex' 'test' 
+[DEBUG] Current users: 'admin' 'random' 'test' 'testuser1' 
 [DEBUG] Checking if username exists: 'test'
 [DEBUG] userExists called for: 'test'
 [DEBUG] Comparing to: 'admin'
-[DEBUG] Comparing to: 'regex'
+[DEBUG] Comparing to: 'random'
 [DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
 [DEBUG] Username already exists: 'test'
 [DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (test): 'CREATE_ROOM|test|test' Parsed command: 'CREATE_ROOM'
-
-=== Server Debug Log Started: Mon Jul 14 16:54:06 2025
 [DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (test): 'CREATE_ROOM|test|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 5 (test): 'GET_CURRENT_QUESTION|test|1' Parsed command: 'GET_CURRENT_QUESTION'
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
-|1' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|ERROR|No active game' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 45 52 52 4F 52 7C 4E 6F 20 61 63 74 69 76 65 20 67 61 6D 65 0A 
-[DEBUG] Received from client 5 (test): 'START_GAME|test|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: test 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What is the powerhouse of the cell?|90|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What is the powerhouse of the cell?|90|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 39 30 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
-|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|2/5|What force keeps us on the ground?|87|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 38 37 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+
+=== Server Debug Log Started: Mon Jul 14 18:23:00 2025
+[DEBUG] Received from client 5 (): 'QUIT' Parsed command: 'QUIT'
+[DEBUG] Received from client 5 (): 'REGISTER|test|test' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'test'
+[DEBUG] Current users: 'admin' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'test'
+[DEBUG] userExists called for: 'test'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Username already exists: 'test'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 6 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 7 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 7 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+
+=== Server Debug Log Started: Mon Jul 14 18:35:54 2025
+[DEBUG] Received from client 5 (): 'REGISTER|test|test' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'test'
+[DEBUG] Current users: 'admin' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'test'
+[DEBUG] userExists called for: 'test'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Username already exists: 'test'
+
+=== Server Debug Log Started: Mon Jul 14 18:45:04 2025
+[DEBUG] Received from client 5 (): 'QUIT' Parsed command: 'QUIT'
+[DEBUG] Received from client 5 (): 'REGISTER|test|test' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'test'
+[DEBUG] Current users: 'admin' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'test'
+[DEBUG] userExists called for: 'test'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Username already exists: 'test'
+[DEBUG] Received from client 5 (): 'REGISTER|2|test' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: '2'
+[DEBUG] Current users: 'admin' 'random' 'test' 'testuser1' 
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (test): 'CREATE_ROOM|test|TestRoom' Parsed command: 'CREATE_ROOM'
+[DEBUG] Received from client 5 (test): 'BROWSE_ROOMS' Parsed command: 'BROWSE_ROOMS'
+[DEBUG] Received from client 5 (test): 'QUIT' Parsed command: 'QUIT'
+[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (test): 'CREATE_ROOM|test|GameRoom' Parsed command: 'CREATE_ROOM'
+[DEBUG] Received from client 6 (): 'REGISTER|player2|test' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'player2'
+[DEBUG] Current users: 'admin' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'player2'
+[DEBUG] userExists called for: 'player2'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Received from client 6 (): 'LOGIN|player2|test' Parsed command: 'LOGIN'
+[DEBUG] Received from client 6 (player2): 'BROWSE_ROOMS' Parsed command: 'BROWSE_ROOMS'
+[DEBUG] Received from client 5 (test): 'QUIT' Parsed command: 'QUIT'
+
+=== Server Debug Log Started: Mon Jul 14 18:49:28 2025
+[DEBUG] Received from client 5 (): 'QUIT' Parsed command: 'QUIT'
+[DEBUG] Received from client 5 (): 'REGISTER|test|test' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'test'
+[DEBUG] Current users: 'admin' 'player2' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'test'
+[DEBUG] userExists called for: 'test'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'player2'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Username already exists: 'test'
+
+=== Server Debug Log Started: Mon Jul 14 19:21:41 2025
+[DEBUG] Received from client 5 (): 'REGISTER|random|Anime@20
+REGISTER|random|Anime@20' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'random'
+[DEBUG] Current users: 'admin' 'player2' 'random' 'test' 'testuser1' 
+[DEBUG] ERROR: Username and password must not contain spaces or newlines.
+[DEBUG] Received from client 5 (): 'REGISTER|abc|abc' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'abc'
+[DEBUG] Current users: 'admin' 'player2' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'abc'
+[DEBUG] userExists called for: 'abc'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'player2'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Received from client 5 (): 'REGISTER|abc|abc' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'abc'
+[DEBUG] Current users: 'abc' 'admin' 'player2' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'abc'
+[DEBUG] userExists called for: 'abc'
+[DEBUG] Comparing to: 'abc'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'player2'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Username already exists: 'abc'
+[DEBUG] Received from client 5 (): 'LOGIN|abc|abc' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (): 'LOGIN|abc|abc' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (abc): 'CREATE_ROOM|abc|play' Parsed command: 'CREATE_ROOM'
+[DEBUG] Received from client 5 (abc): 'START_GAME|abc|1
+|3' Parsed command: 'START_GAME'
+[DEBUG] START_GAME: Sending first question to players: abc 
+[DEBUG] To player 'abc': 'GAME_RESPONSE|QUESTION|1/3|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
+[DEBUG] Sending to abc: 'GAME_RESPONSE|QUESTION|1/3|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
+[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 33 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
+[DEBUG] Received from client 5 (abc): 'SUBMIT_ANSWER|abc|1
 |3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|3/5|What is the chemical symbol for water?|84|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 38 34 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
-|1' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|4/5|What gas do plants absorb from the atmosphere?|77|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 37 37 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|5/5|What planet is known as the Red Planet?|75|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 35 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 37 35 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
+[DEBUG] Sending to abc: 'GAME_RESPONSE|QUESTION|2/3|What is the powerhouse of the cell?|80|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
+[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 33 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 38 30 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
+[DEBUG] Received from client 5 (abc): 'SUBMIT_ANSWER|abc|1
 |2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED' (with newline)
+[DEBUG] Sending to abc: 'GAME_RESPONSE|QUESTION|3/3|What is the chemical symbol for water?|72|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
+[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 33 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 37 32 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
+[DEBUG] Received from client 5 (abc): 'SUBMIT_ANSWER|abc|1
+|2' Parsed command: 'SUBMIT_ANSWER'
+[DEBUG] Sending to abc: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED' (with newline)
 [DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 45 52 52 4F 52 7C 4E 6F 20 6D 6F 72 65 20 71 75 65 73 74 69 6F 6E 73 7C 47 41 4D 45 5F 46 49 4E 49 53 48 45 44 0A 
+[DEBUG] Received from client 5 (abc): 'GET_LEADERBOARD|abc|1' Parsed command: 'GET_LEADERBOARD'
+[DEBUG] Received from client 5 (abc): 'GET_LEADERBOARD|abc|1' Parsed command: 'GET_LEADERBOARD'
+[DEBUG] Received from client 5 (): 'LOGIN|abc|abc' Parsed command: 'LOGIN'
 
-=== Server Debug Log Started: Mon Jul 14 17:01:48 2025
-[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (regex): 'CREATE_ROOM|regex|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 5 (test): 'JOIN_ROOM|test|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 6 (regex): 'START_GAME|regex|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: regex test 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 39 30 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What is the chemical symbol for water?|90|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 39 30 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-
-=== Server Debug Log Started: Mon Jul 14 17:09:34 2025
-[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (test): 'CREATE_ROOM|test|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 6 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (regex): 'JOIN_ROOM|regex|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 5 (test): 'GET_GAME_INFO|test|1' Parsed command: 'GET_GAME_INFO'
-[DEBUG] Received from client 5 (test): 'GET_LEADERBOARD|test|1' Parsed command: 'GET_LEADERBOARD'
-[DEBUG] Received from client 5 (test): 'START_GAME|test|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: test regex 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
+=== Server Debug Log Started: Mon Jul 14 19:28:09 2025
+[DEBUG] Received from client 5 (): 'LOGIN|abc|abc' Parsed command: 'LOGIN'
+[DEBUG] Received from client 5 (abc): 'CREATE_ROOM|abc|xyz' Parsed command: 'CREATE_ROOM'
+[DEBUG] Received from client 5 (abc): 'START_GAME|abc|1
+|2' Parsed command: 'START_GAME'
+[DEBUG] START_GAME: Sending first question to players: abc 
+[DEBUG] To player 'abc': 'GAME_RESPONSE|QUESTION|1/2|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
+[DEBUG] Sending to abc: 'GAME_RESPONSE|QUESTION|1/2|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
+[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 32 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 39 30 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
+[DEBUG] Received from client 5 (abc): 'SUBMIT_ANSWER|abc|1
 |3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|87|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 38 37 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|78|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 37 38 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1
+[DEBUG] Sending to abc: 'GAME_RESPONSE|QUESTION|2/2|What is the powerhouse of the cell?|83|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
+[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 32 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 38 33 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
+[DEBUG] Received from client 5 (abc): 'SUBMIT_ANSWER|abc|1
 |2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|4/5|What is the chemical symbol for water?|68|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 36 38 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] Received from client 6 (regex): 'SUBMIT_ANSWER|regex|1|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|2/5|What gas do plants absorb from the atmosphere?|58|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 35 38 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Received from client 6 (regex): 'SUBMIT_ANSWER|regex|1|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|3/5|What planet is known as the Red Planet?|50|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 35 30 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
+[DEBUG] Sending to abc: 'GAME_RESPONSE|ERROR|No more questions|GAME_FINISHED' (with newline)
+[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 45 52 52 4F 52 7C 4E 6F 20 6D 6F 72 65 20 71 75 65 73 74 69 6F 6E 73 7C 47 41 4D 45 5F 46 49 4E 49 53 48 45 44 0A 
+[DEBUG] Received from client 5 (abc): 'GET_LEADERBOARD|abc|1' Parsed command: 'GET_LEADERBOARD'
+[DEBUG] Received from client 5 (abc): 'END_GAME|abc|1' Parsed command: 'END_GAME'
+[DEBUG] Received from client 5 (abc): 'GET_LEADERBOARD|abc|1' Parsed command: 'GET_LEADERBOARD'
+[DEBUG] Received from client 5 (abc): 'GET_GAME_INFO|abc|1' Parsed command: 'GET_GAME_INFO'
 
-=== Server Debug Log Started: Mon Jul 14 17:19:56 2025
-
-=== Server Debug Log Started: Mon Jul 14 17:21:03 2025
-
-=== Server Debug Log Started: Mon Jul 14 17:23:51 2025
-[DEBUG] Received from client 6 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (regex): 'CREATE_ROOM|regex|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 6 (test): 'JOIN_ROOM|test|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 5 (regex): 'START_GAME|regex|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: regex test 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|2/5|What planet is known as the Red Planet?|87|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 38 37 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1
-|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|3/5|What gas do plants absorb from the atmosphere?|76|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 37 36 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-
-=== Server Debug Log Started: Mon Jul 14 17:26:45 2025
-[DEBUG] Received from client 6 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (test): 'CREATE_ROOM|test|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 5 (regex): 'JOIN_ROOM|regex|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 6 (test): 'START_GAME|test|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: test regex 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 39 30 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 39 30 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-
-=== Server Debug Log Started: Mon Jul 14 17:29:52 2025
-[DEBUG] Received from client 6 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (regex): 'CREATE_ROOM|regex|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 6 (test): 'JOIN_ROOM|test|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 5 (regex): 'START_GAME|regex|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: regex test 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What force keeps us on the ground?|90|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 39 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|2/5|What is the chemical symbol for water?|88|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 38 38 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1
-|1' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|3/5|What gas do plants absorb from the atmosphere?|81|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 38 31 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|4/5|What planet is known as the Red Planet?|71|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 37 31 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1
-|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|5/5|What is the powerhouse of the cell?|69|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 35 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 36 39 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-
-=== Server Debug Log Started: Mon Jul 14 17:32:53 2025
-[DEBUG] Received from client 6 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 5 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (test): 'CREATE_ROOM|test|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 5 (regex): 'JOIN_ROOM|regex|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 6 (test): 'START_GAME|test|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: test regex 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What planet is known as the Red Planet?|90|1.Venus|2.Mars|3.Jupiter|4.Saturn'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What planet is known as the Red Planet?|90|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 39 30 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What planet is known as the Red Planet?|90|1.Venus|2.Mars|3.Jupiter|4.Saturn'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What planet is known as the Red Planet?|90|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 39 30 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
-[DEBUG] Received from client 6 (test): 'SUBMIT_ANSWER|test|1
-|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|2/5|What is the powerhouse of the cell?|89|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 38 39 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|2/5|What is the powerhouse of the cell?|80|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 38 30 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|3/5|What force keeps us on the ground?|70|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 37 30 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 5 (regex): 'SUBMIT_ANSWER|regex|1|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|4/5|What gas do plants absorb from the atmosphere?|65|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 36 35 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Received from client 6 (test): 'SUBMIT_ANSWER|test|1
-|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|3/5|What force keeps us on the ground?|61|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 36 31 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-
-=== Server Debug Log Started: Mon Jul 14 17:35:47 2025
-[DEBUG] Received from client 5 (): 'LOGIN|test|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (): 'LOGIN|regex|test' Parsed command: 'LOGIN'
-[DEBUG] Received from client 6 (regex): 'CREATE_ROOM|regex|test' Parsed command: 'CREATE_ROOM'
-[DEBUG] Received from client 5 (test): 'JOIN_ROOM|test|1' Parsed command: 'JOIN_ROOM'
-[DEBUG] Received from client 6 (regex): 'START_GAME|regex|1
-|5' Parsed command: 'START_GAME'
-[DEBUG] START_GAME: Sending first question to players: regex test 
-[DEBUG] To player 'regex': 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 39 30 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] To player 'test': 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|1/5|What gas do plants absorb from the atmosphere?|90|1.Oxygen|2.Nitrogen|3.Carbon dioxide|4.Hydrogen' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 31 2F 35 7C 57 68 61 74 20 67 61 73 20 64 6F 20 70 6C 61 6E 74 73 20 61 62 73 6F 72 62 20 66 72 6F 6D 20 74 68 65 20 61 74 6D 6F 73 70 68 65 72 65 3F 7C 39 30 7C 31 2E 4F 78 79 67 65 6E 7C 32 2E 4E 69 74 72 6F 67 65 6E 7C 33 2E 43 61 72 62 6F 6E 20 64 69 6F 78 69 64 65 7C 34 2E 48 79 64 72 6F 67 65 6E 0A 
-[DEBUG] Received from client 6 (regex): 'SUBMIT_ANSWER|regex|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|2/5|What is the powerhouse of the cell?|87|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 38 37 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-[DEBUG] Received from client 6 (regex): 'SUBMIT_ANSWER|regex|1
-|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|3/5|What force keeps us on the ground?|84|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 38 34 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|2/5|What is the powerhouse of the cell?|81|1.Nucleus|2.Mitochondria|3.Ribosome|4.Chloroplast' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 32 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 70 6F 77 65 72 68 6F 75 73 65 20 6F 66 20 74 68 65 20 63 65 6C 6C 3F 7C 38 31 7C 31 2E 4E 75 63 6C 65 75 73 7C 32 2E 4D 69 74 6F 63 68 6F 6E 64 72 69 61 7C 33 2E 52 69 62 6F 73 6F 6D 65 7C 34 2E 43 68 6C 6F 72 6F 70 6C 61 73 74 0A 
-[DEBUG] Received from client 5 (test): 'SUBMIT_ANSWER|test|1|2' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to test: 'GAME_RESPONSE|QUESTION|3/5|What force keeps us on the ground?|75|1.Magnetism|2.Friction|3.Gravity|4.Electricity' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 33 2F 35 7C 57 68 61 74 20 66 6F 72 63 65 20 6B 65 65 70 73 20 75 73 20 6F 6E 20 74 68 65 20 67 72 6F 75 6E 64 3F 7C 37 35 7C 31 2E 4D 61 67 6E 65 74 69 73 6D 7C 32 2E 46 72 69 63 74 69 6F 6E 7C 33 2E 47 72 61 76 69 74 79 7C 34 2E 45 6C 65 63 74 72 69 63 69 74 79 0A 
-[DEBUG] Received from client 6 (regex): 'SUBMIT_ANSWER|regex|1
-|3' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|4/5|What is the chemical symbol for water?|71|1.H2O|2.CO2|3.O2|4.NaCl' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 34 2F 35 7C 57 68 61 74 20 69 73 20 74 68 65 20 63 68 65 6D 69 63 61 6C 20 73 79 6D 62 6F 6C 20 66 6F 72 20 77 61 74 65 72 3F 7C 37 31 7C 31 2E 48 32 4F 7C 32 2E 43 4F 32 7C 33 2E 4F 32 7C 34 2E 4E 61 43 6C 0A 
-[DEBUG] Received from client 6 (regex): 'SUBMIT_ANSWER|regex|1
-|1' Parsed command: 'SUBMIT_ANSWER'
-[DEBUG] Sending to regex: 'GAME_RESPONSE|QUESTION|5/5|What planet is known as the Red Planet?|70|1.Venus|2.Mars|3.Jupiter|4.Saturn' (with newline)
-[DEBUG] Raw bytes: 47 41 4D 45 5F 52 45 53 50 4F 4E 53 45 7C 51 55 45 53 54 49 4F 4E 7C 35 2F 35 7C 57 68 61 74 20 70 6C 61 6E 65 74 20 69 73 20 6B 6E 6F 77 6E 20 61 73 20 74 68 65 20 52 65 64 20 50 6C 61 6E 65 74 3F 7C 37 30 7C 31 2E 56 65 6E 75 73 7C 32 2E 4D 61 72 73 7C 33 2E 4A 75 70 69 74 65 72 7C 34 2E 53 61 74 75 72 6E 0A 
+=== Server Debug Log Started: Mon Jul 14 19:32:08 2025

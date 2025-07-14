@@ -89,16 +89,14 @@ The server and client communicate using a simple, human-readable, text-based pro
   - `ANSWER_RESULT|CORRECT|2|10|GAME_FINISHED`
   - `LEADERBOARD|1.user1:30(3/3)|2.user2:20(2/3)|...`
 
-- **Parsing:**  
-  The code uses a simple split on `|` to parse messages into a command and parameters.
+#### Direct Game Messages
+- **Question:** `QUESTION|question_number/total|question_text|time_left|1.option1|2.option2|...`
+- **Answer Result:** `ANSWER_RESULT|CORRECT/INCORRECT|correct_answer|score|GAME_FINISHED?`
 
----
+### Message Parsing
+The code uses `std::getline()` with `|` delimiter to parse messages into a command and parameters vector.
 
-## Notes
 
-- All networking is done using POSIX (BSD) sockets for Linux.
-- The protocol is intentionally simple for easy debugging and extensibility.
-- All persistent data (users, questions) is stored in the `data/` directory.
-- The client is fully CLI-based for simplicity and portability.
-
----
+# Authors
+Vision Rijal - 201739
+Pradip Dhungana - 201751

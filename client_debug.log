@@ -139,3 +139,19 @@
 
 === Client Debug Log Started: Mon Jul 14 19:28:15 2025
 [DEBUG] Logging in with username: 'abc' password: 'abc'
+
+=== Client Debug Log Started: Mon Jul 14 22:29:19 2025
+[DEBUG] Registering with username: 'randoom' password: 'randoom'
+[DEBUG] Username raw bytes: 72 61 6E 64 6F 6F 6D 
+[DEBUG] Password raw bytes: 72 61 6E 64 6F 6F 6D 
+[DEBUG] Registering with username: 'randoom' password: 'randoom'
+[DEBUG] Username raw bytes: 72 61 6E 64 6F 6F 6D 
+[DEBUG] Password raw bytes: 72 61 6E 64 6F 6F 6D 
+[DEBUG] Logging in with username: 'randoom' password: 'randoom'
+
+=== Client Debug Log Started: Mon Jul 14 22:30:42 2025
+[DEBUG] Registering with username: 'player' password: 'player'
+[DEBUG] Username raw bytes: 70 6C 61 79 65 72 
+[DEBUG] Password raw bytes: 70 6C 61 79 65 72 
+
+=== Client Debug Log Started: Mon Jul 14 22:34:00 2025

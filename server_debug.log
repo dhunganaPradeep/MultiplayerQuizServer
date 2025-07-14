@@ -196,3 +196,42 @@ REGISTER|random|Anime@20' Parsed command: 'REGISTER'
 [DEBUG] Received from client 5 (abc): 'GET_GAME_INFO|abc|1' Parsed command: 'GET_GAME_INFO'
 
 === Server Debug Log Started: Mon Jul 14 19:32:08 2025
+
+=== Server Debug Log Started: Mon Jul 14 22:29:04 2025
+[DEBUG] Received from client 5 (): 'REGISTER|randoom|randoom
+REGISTER|randoom|randoom' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'randoom'
+[DEBUG] Current users: 'abc' 'admin' 'player2' 'random' 'test' 'testuser1' 
+[DEBUG] ERROR: Username and password must not contain spaces or newlines.
+[DEBUG] Received from client 5 (): 'REGISTER|randoom|randoom' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'randoom'
+[DEBUG] Current users: 'abc' 'admin' 'player2' 'random' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'randoom'
+[DEBUG] userExists called for: 'randoom'
+[DEBUG] Comparing to: 'abc'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'player2'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Received from client 5 (): 'REGISTER|randoom|randoom' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'randoom'
+[DEBUG] Current users: 'abc' 'admin' 'player2' 'random' 'randoom' 'test' 'testuser1' 
+[DEBUG] Checking if username exists: 'randoom'
+[DEBUG] userExists called for: 'randoom'
+[DEBUG] Comparing to: 'abc'
+[DEBUG] Comparing to: 'admin'
+[DEBUG] Comparing to: 'player2'
+[DEBUG] Comparing to: 'random'
+[DEBUG] Comparing to: 'randoom'
+[DEBUG] Comparing to: 'test'
+[DEBUG] Comparing to: 'testuser1'
+[DEBUG] Username already exists: 'randoom'
+[DEBUG] Received from client 5 (): 'LOGIN|randoom|randoom' Parsed command: 'LOGIN'
+
+=== Server Debug Log Started: Mon Jul 14 22:30:29 2025
+[DEBUG] Received from client 5 (): 'REGISTER|player|player
+REGISTER|player|player' Parsed command: 'REGISTER'
+[DEBUG] Attempting to register username: 'player'
+[DEBUG] Current users: 'abc' 'admin' 'player2' 'random' 'randoom' 'test' 'testuser1' 
+[DEBUG] ERROR: Username and password must not contain spaces or newlines.

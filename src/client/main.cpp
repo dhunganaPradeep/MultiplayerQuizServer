@@ -979,7 +979,6 @@ int main() {
                     debugLogMsg(passwordBytes);
                     std::string registerMsg = buildMessage("REGISTER", {username, password});
                     sendWithNewline(sock, registerMsg);
-                    sendWithNewline(sock, registerMsg);
                 recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
                 if (recvLen > 0) {
                     buffer[recvLen] = '\0';

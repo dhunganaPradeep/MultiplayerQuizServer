@@ -511,11 +511,12 @@ void playGameSession(int sock, const std::string& username, const std::string& c
             char buffer[4096];
             int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
             if (recvLen <= 0) break;
-                buffer[recvLen] = '\0';
-                leftover += buffer;
+            buffer[recvLen] = '\0';
+            leftover += buffer;
             continue;
         }
         // First, process all ANSWER_RESULT messages
+        bool answerProcessed = false;
         for (const auto& message : messages) {
             ProtocolMessage parsed = parseMessage(message);
             if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "ANSWER_RESULT") {
@@ -576,10 +577,18 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                     gameFinished = true;
                     break;
                 }
+                answerProcessed = true;
             }
         }
         if (gameFinished) break;
-        // Then process the next QUESTION (if any)
+        // If we just processed an answer, request the next question
+        if (answerProcessed && !gameFinished) {
+            std::string getQMsg = buildMessage("GET_CURRENT_QUESTION", {username, currentRoomId});
+            sendWithNewline(sock, getQMsg);
+            // Wait for the next question to arrive in the next loop iteration
+            continue;
+        }
+        // Then process all QUESTION messages
         for (const auto& message : messages) {
             ProtocolMessage parsed = parseMessage(message);
             if (parsed.command == "GAME_RESPONSE" && !parsed.params.empty() && parsed.params[0] == "QUESTION") {
@@ -626,16 +635,6 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                     std::cout << std::string(std::max(0, padding), ' ') << "┃\n";
                 }
                 std::cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n" << Color::RESET;
-<<<<<<< Updated upstream
-                
-                
-                std::cout << "\n";
-                
-                
-                std::cout << Color::BRIGHT_YELLOW << "Time remaining: " << parsed.params[3] << "s" << Color::RESET << "\n\n";
-                
-=======
->>>>>>> Stashed changes
                 std::string ans;
                 std::thread timerThread([&]() {
                     int timeLeft = std::stoi(parsed.params[3]);
@@ -1292,14 +1291,25 @@ int main() {
                         
                         std::string startMsg = buildMessage("START_GAME", {username, currentRoomId, qCount});
                         sendWithNewline(sock, startMsg);
-                        char buffer[1024];
-                        int recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                        char buffer[4096];
+                        int recvLen = 0;
                         std::string leftover;
-                        if (recvLen > 0) {
+                        bool gotQuestion = false;
+                        // Read all messages until we get a QUESTION
+                        while (!gotQuestion) {
+                            recvLen = recv(sock, buffer, sizeof(buffer) - 1, 0);
+                            if (recvLen <= 0) break;
                             buffer[recvLen] = '\0';
-                            leftover = buffer;
+                            leftover += buffer;
+                            // Check if QUESTION is in the buffer
+                            if (leftover.find("QUESTION") != std::string::npos) {
+                                gotQuestion = true;
+                            }
+                            // Optionally, break if buffer contains at least one newline (one complete message)
+                            if (leftover.find('\n') != std::string::npos) {
+                                break;
+                            }
                         }
-                        
                         playGameSession(sock, username, currentRoomId, leftover.empty() ? nullptr : &leftover);
                         waitForEnter();
                         

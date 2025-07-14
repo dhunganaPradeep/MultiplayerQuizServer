@@ -319,3 +319,25 @@ GAME_RESPONSE|ANSWER_RESULT|CORRECT|2|Mars|24
 
 === Client Debug Log Started: Mon Jul 14 22:28:09 2025
 [DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:15:03 2025
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:17:33 2025
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:22:10 2025
+[DEBUG] Logging in with username: 'vision' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:22:53 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:27:31 2025
+[DEBUG] Logging in with username: 'testest' password: 'test'
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:31:16 2025
+[DEBUG] Logging in with username: 'test' password: 'test'
+
+=== Client Debug Log Started: Mon Jul 14 23:36:23 2025
+[DEBUG] Logging in with username: 'test' password: 'test'

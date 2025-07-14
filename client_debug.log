@@ -155,3 +155,17 @@
 [DEBUG] Password raw bytes: 70 6C 61 79 65 72 
 
 === Client Debug Log Started: Mon Jul 14 22:34:00 2025
+
+=== Client Debug Log Started: Mon Jul 14 22:35:20 2025
+[DEBUG] Registering with username: 'regex' password: 'regex'
+[DEBUG] Username raw bytes: 72 65 67 65 78 
+[DEBUG] Password raw bytes: 72 65 67 65 78 
+[DEBUG] Logging in with username: 'regex' password: 'regex'
+
+=== Client Debug Log Started: Mon Jul 14 22:38:03 2025
+
+=== Client Debug Log Started: Mon Jul 14 22:39:01 2025
+[DEBUG] Registering with username: 'ganja' password: 'ganja'
+[DEBUG] Username raw bytes: 67 61 6E 6A 61 
+[DEBUG] Password raw bytes: 67 61 6E 6A 61 
+[DEBUG] Logging in with username: 'ganja' password: 'ganja'

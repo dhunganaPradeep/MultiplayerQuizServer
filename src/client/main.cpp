@@ -671,32 +671,32 @@ void playGameSession(int sock, const std::string& username, const std::string& c
                 
                 std::cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n" << Color::RESET;
                 
-                // Add extra space for the input area
+                
                 std::cout << "\n";
                 
-                // Create a dedicated line for the timer at the bottom
+                
                 std::cout << Color::BRIGHT_YELLOW << "Time remaining: " << parsed.params[3] << "s" << Color::RESET << "\n\n";
                 
                 std::string ans;
                 std::thread timerThread([&]() {
                     int timeLeft = std::stoi(parsed.params[3]);
-                    // Move cursor to position after the question box and before the input prompt
+                    
                     for (int t = timeLeft-1; t > 0 && ans.empty(); t--) {
-                        // Save cursor position
+                        
                         std::cout << "\033[s";
-                        // Move to the timer line (2 lines up from current position)
+                        
                         std::cout << "\033[2A";
-                        // Clear the line
+                        
                         std::cout << "\033[2K";
-                        // Print updated timer
+                        
                         std::cout << Color::BRIGHT_YELLOW << "Time remaining: " << t << "s" << Color::RESET;
-                        // Restore cursor position
+                        
                         std::cout << "\033[u" << std::flush;
                         std::this_thread::sleep_for(std::chrono::seconds(1));
                     }
                 });
                 
-                // Get user input
+                
                 ans = getInput(Color::BRIGHT_WHITE + "Enter your answer (option number): " + Color::RESET);
                 timerThread.detach(); 
                 
